@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.ecommerce.request.service.dto.ClientDTO;
+import com.ecommerce.request.service.dto.ProductDTO;
+
 /**
  * A DTO for the {@link com.ecommerce.favoris.domain.Favoris} entity.
  */
@@ -21,6 +24,9 @@ public class FavorisDTO implements Serializable {
     private LocalDate modifiedat;
 
     private LocalDate deletedat;
+    private ClientDTO clientDTO;
+    private ProductDTO productDTO;
+
 
     public String getId() {
         return id;
@@ -29,8 +35,25 @@ public class FavorisDTO implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    
 
-    public String getIdproduct() {
+    public ClientDTO getClientDTO() {
+		return clientDTO;
+	}
+
+	public void setClientDTO(ClientDTO clientDTO) {
+		this.clientDTO = clientDTO;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
+	public String getIdproduct() {
         return idproduct;
     }
 
@@ -91,16 +114,12 @@ public class FavorisDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "FavorisDTO{" +
-            "id='" + getId() + "'" +
-            ", idproduct='" + getIdproduct() + "'" +
-            ", iduser='" + getIduser() + "'" +
-            ", createdat='" + getCreatedat() + "'" +
-            ", modifiedat='" + getModifiedat() + "'" +
-            ", deletedat='" + getDeletedat() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "FavorisDTO [id=" + id + ", idproduct=" + idproduct + ", iduser=" + iduser + ", createdat=" + createdat
+				+ ", modifiedat=" + modifiedat + ", deletedat=" + deletedat + ", clientDTO=" + clientDTO
+				+ ", productDTO=" + productDTO + "]";
+	}
+
+  
 }

@@ -2,14 +2,20 @@ package com.ecommerce.favoris.service;
 
 import com.ecommerce.favoris.domain.Favoris;
 import com.ecommerce.favoris.repository.FavorisRepository;
+import com.ecommerce.favoris.service.dto.ClientDTO;
 import com.ecommerce.favoris.service.dto.FavorisDTO;
+import com.ecommerce.favoris.service.dto.ProductDTO;
 import com.ecommerce.favoris.service.mapper.FavorisMapper;
+import com.ecommerce.favoris.client.ClientFeignClient;
+import com.ecommerce.favoris.client.ProductFeignClient;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,10 +29,13 @@ public class FavorisService {
     private final FavorisRepository favorisRepository;
 
     private final FavorisMapper favorisMapper;
-
-    public FavorisService(FavorisRepository favorisRepository, FavorisMapper favorisMapper) {
+    private final ClientFeignClient clientFeignClient;
+    private final ProductFeignClient productFeignClient;
+    public FavorisService(FavorisRepository favorisRepository, FavorisMapper favorisMapper, ClientFeignClient clientFeignClient,ProductFeignClient productFeignClient ) {
         this.favorisRepository = favorisRepository;
         this.favorisMapper = favorisMapper;
+        this.clientFeignClient = clientFeignClient;
+        this.productFeignClient= productFeignClient;
     }
 
     /**
@@ -92,8 +101,25 @@ public class FavorisService {
      * @return the entity.
      */
     public Optional<FavorisDTO> findOne(String id) {
+    	/*
         log.debug("Request to get Favoris : {}", id);
         return favorisRepository.findById(id).map(favorisMapper::toDto);
+    */
+    	
+    	log.debug("Request to get request : {}", id);
+        // return productRepository.findById(id).map(productMapper::toDto);
+         Optional<FavorisDTO> fDTO = favorisRepository.findById(id).map(favorisMapper::toDto);
+
+         
+         
+         ResponseEntity<ClientDTO> clientDTO = clientFeignClient.getClient(fDTO.get().getIduser());
+         fDTO.get().setClientDTO(clientDTO.getBody());
+         
+         ResponseEntity<ProductDTO> productDTO = productFeignClient.getProduct(fDTO.get().getIdproduct());
+        fDTO.get().setProductDTO(productDTO.getBody());
+         
+         return fDTO;
+    	
     }
 
     /**
