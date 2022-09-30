@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.ecommerce.product.service.dto.ClientDTO;
+
 /**
  * A DTO for the {@link com.ecommerce.message.domain.Message} entity.
  */
@@ -27,6 +29,8 @@ public class MessageDTO implements Serializable {
     private LocalDate createdat;
 
     private LocalDate hiddenat;
+    
+    private ClientDTO clientDTO;
 
     public String getId() {
         return id;
@@ -35,8 +39,17 @@ public class MessageDTO implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    
 
-    public String getIduser() {
+    public ClientDTO getClientDTO() {
+		return clientDTO;
+	}
+
+	public void setClientDTO(ClientDTO clientDTO) {
+		this.clientDTO = clientDTO;
+	}
+
+	public String getIduser() {
         return iduser;
     }
 
@@ -121,19 +134,14 @@ public class MessageDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "MessageDTO{" +
-            "id='" + getId() + "'" +
-            ", iduser='" + getIduser() + "'" +
-            ", idproduct='" + getIdproduct() + "'" +
-            ", idsender='" + getIdsender() + "'" +
-            ", idreceiver='" + getIdreceiver() + "'" +
-            ", subject='" + getSubject() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", createdat='" + getCreatedat() + "'" +
-            ", hiddenat='" + getHiddenat() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "MessageDTO [id=" + id + ", iduser=" + iduser + ", idproduct=" + idproduct + ", idsender=" + idsender
+				+ ", idreceiver=" + idreceiver + ", subject=" + subject + ", description=" + description
+				+ ", createdat=" + createdat + ", hiddenat=" + hiddenat + ", clientDTO=" + clientDTO + "]";
+	}
+
+ 
+    
+    
 }

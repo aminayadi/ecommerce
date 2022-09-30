@@ -4,12 +4,17 @@ import com.ecommerce.message.domain.Message;
 import com.ecommerce.message.repository.MessageRepository;
 import com.ecommerce.message.service.dto.MessageDTO;
 import com.ecommerce.message.service.mapper.MessageMapper;
+import com.ecommerce.message.client.ClientFeignClient;
+import com.ecommerce.message.service.dto.ClientDTO;
+
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,10 +28,12 @@ public class MessageService {
     private final MessageRepository messageRepository;
 
     private final MessageMapper messageMapper;
+    private final ClientFeignClient clientFeignClient;
 
-    public MessageService(MessageRepository messageRepository, MessageMapper messageMapper) {
+    public MessageService(MessageRepository messageRepository, MessageMapper messageMapper, ClientFeignClient clientFeignClient) {
         this.messageRepository = messageRepository;
         this.messageMapper = messageMapper;
+        this.clientFeignClient = clientFeignClient;
     }
 
     /**
@@ -92,8 +99,24 @@ public class MessageService {
      * @return the entity.
      */
     public Optional<MessageDTO> findOne(String id) {
+    	/*
         log.debug("Request to get Message : {}", id);
         return messageRepository.findById(id).map(messageMapper::toDto);
+        */
+    	
+    	log.debug("Request to get Product : {}", id);
+        // return productRepository.findById(id).map(productMapper::toDto);
+         Optional<MessageDTO> mDTO = messageRepository.findById(id).map(messageMapper::toDto);
+
+        
+         
+         ResponseEntity<ClientDTO> clientDTO = clientFeignClient.getClient(mDTO.get().getIduser());
+        mDTO.get().setClientDTO(clientDTO.getBody());
+        
+         
+         return mDTO;
+    	
+    	
     }
 
     /**
