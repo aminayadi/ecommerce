@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.ecommerce.product.service.dto.CategoryDTO;
+import com.ecommerce.product.service.dto.ClientDTO;
+
 /**
  * A DTO for the {@link com.ecommerce.request.domain.Request} entity.
  */
@@ -27,6 +30,10 @@ public class RequestDTO implements Serializable {
     private LocalDate modifiedat;
 
     private LocalDate deletedat;
+    
+    private CategoryDTO categoryDTO;
+    private ClientDTO clientDTO;
+    private ProductDTO productDTO;
 
     public String getId() {
         return id;
@@ -35,8 +42,34 @@ public class RequestDTO implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    
+    
 
-    public String getIduser() {
+    public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
+	}
+
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
+	}
+
+	public ClientDTO getClientDTO() {
+		return clientDTO;
+	}
+
+	public void setClientDTO(ClientDTO clientDTO) {
+		this.clientDTO = clientDTO;
+	}
+
+	public String getIduser() {
         return iduser;
     }
 
@@ -121,19 +154,16 @@ public class RequestDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "RequestDTO{" +
-            "id='" + getId() + "'" +
-            ", iduser='" + getIduser() + "'" +
-            ", idcategory='" + getIdcategory() + "'" +
-            ", idproduct='" + getIdproduct() + "'" +
-            ", subject='" + getSubject() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", createdat='" + getCreatedat() + "'" +
-            ", modifiedat='" + getModifiedat() + "'" +
-            ", deletedat='" + getDeletedat() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "RequestDTO [id=" + id + ", iduser=" + iduser + ", idcategory=" + idcategory + ", idproduct=" + idproduct
+				+ ", subject=" + subject + ", description=" + description + ", createdat=" + createdat + ", modifiedat="
+				+ modifiedat + ", deletedat=" + deletedat + ", categoryDTO=" + categoryDTO + ", clientDTO=" + clientDTO
+				+ ", productDTO=" + productDTO + "]";
+	}
+
+	
+    
+    
+
 }

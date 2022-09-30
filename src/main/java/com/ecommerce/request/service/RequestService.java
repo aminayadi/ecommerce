@@ -1,7 +1,13 @@
 package com.ecommerce.request.service;
 
+import com.ecommerce.request.client.CategoryFeignClient;
+import com.ecommerce.request.client.ClientFeignClient;
+import com.ecommerce.request.client.ProductFeignClient;
 import com.ecommerce.request.domain.Request;
 import com.ecommerce.request.repository.RequestRepository;
+import com.ecommerce.request.service.dto.CategoryDTO;
+import com.ecommerce.request.service.dto.ClientDTO;
+import com.ecommerce.request.service.dto.ProductDTO;
 import com.ecommerce.request.service.dto.RequestDTO;
 import com.ecommerce.request.service.mapper.RequestMapper;
 import java.util.LinkedList;
@@ -10,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,10 +30,16 @@ public class RequestService {
     private final RequestRepository requestRepository;
 
     private final RequestMapper requestMapper;
+    private final CategoryFeignClient categoryFeignClient;
+    private final ClientFeignClient clientFeignClient;
+    private final ProductFeignClient productFeignClient;
 
-    public RequestService(RequestRepository requestRepository, RequestMapper requestMapper) {
+    public RequestService(RequestRepository requestRepository, RequestMapper requestMapper, ClientFeignClient clientFeignClient, CategoryFeignClient categoryFeignClient, ProductFeignClient productFeignClient) {
         this.requestRepository = requestRepository;
         this.requestMapper = requestMapper;
+        this.categoryFeignClient = categoryFeignClient;
+        this.clientFeignClient = clientFeignClient;
+        this.productFeignClient= productFeignClient;
     }
 
     /**
@@ -92,8 +105,26 @@ public class RequestService {
      * @return the entity.
      */
     public Optional<RequestDTO> findOne(String id) {
+    	
+    	/*
         log.debug("Request to get Request : {}", id);
         return requestRepository.findById(id).map(requestMapper::toDto);
+        */
+    	
+    	log.debug("Request to get request : {}", id);
+        // return productRepository.findById(id).map(productMapper::toDto);
+         Optional<RequestDTO> rDTO = requestRepository.findById(id).map(requestMapper::toDto);
+
+         ResponseEntity<CategoryDTO> catDTO = categoryFeignClient.getCategory(rDTO.get().getIdcategory());
+         rDTO.get().setCategoryDTO(catDTO.getBody());
+         
+         ResponseEntity<ClientDTO> clientDTO = clientFeignClient.getClient(rDTO.get().getIduser());
+         rDTO.get().setClientDTO(clientDTO.getBody());
+         
+         ResponseEntity<ProductDTO> productDTO = productFeignClient.getProduct(rDTO.get().getIdproduct());
+         rDTO.get().setProductDTO(productDTO.getBody());
+         
+         return rDTO;
     }
 
     /**
