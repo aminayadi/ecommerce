@@ -1,0 +1,38 @@
+{
+  "changelogDate": "20220929075058",
+  "clientRootFolder": "categorydb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idparent",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "parent",
+      "fieldType": "String"
+    }
+  ],
+  "microserviceName": "categorydb",
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
