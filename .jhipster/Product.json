@@ -1,0 +1,48 @@
+{
+  "changelogDate": "20220930072359",
+  "clientRootFolder": "productdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idcategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iduser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedat",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "microserviceName": "productdb",
+  "microservicePath": "../product",
+  "name": "Product",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

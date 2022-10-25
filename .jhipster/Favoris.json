@@ -1,0 +1,35 @@
+{
+  "changelogDate": "20220930092443",
+  "clientRootFolder": "favorisdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idproduct",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iduser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "modifiedat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "deletedat",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "microserviceName": "favorisdb",
+  "microservicePath": "../favoris",
+  "name": "Favoris",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

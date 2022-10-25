@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-favoris-heading" data-cy="FavorisCreateUpdateHeading">Create or edit a Favoris</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idproduct">Idproduct</label>
+          <input type="text" class="form-control" name="idproduct" id="field_idproduct" data-cy="idproduct" formControlName="idproduct" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_iduser">Iduser</label>
+          <input type="text" class="form-control" name="iduser" id="field_iduser" data-cy="iduser" formControlName="iduser" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_createdat">Createdat</label>
+          <div class="input-group">
+            <input
+              id="field_createdat"
+              data-cy="createdat"
+              type="text"
+              class="form-control"
+              name="createdat"
+              ngbDatepicker
+              #createdatDp="ngbDatepicker"
+              formControlName="createdat"
+            />
+            <button type="button" class="btn btn-secondary" (click)="createdatDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_modifiedat">Modifiedat</label>
+          <div class="input-group">
+            <input
+              id="field_modifiedat"
+              data-cy="modifiedat"
+              type="text"
+              class="form-control"
+              name="modifiedat"
+              ngbDatepicker
+              #modifiedatDp="ngbDatepicker"
+              formControlName="modifiedat"
+            />
+            <button type="button" class="btn btn-secondary" (click)="modifiedatDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_deletedat">Deletedat</label>
+          <div class="input-group">
+            <input
+              id="field_deletedat"
+              data-cy="deletedat"
+              type="text"
+              class="form-control"
+              name="deletedat"
+              ngbDatepicker
+              #deletedatDp="ngbDatepicker"
+              formControlName="deletedat"
+            />
+            <button type="button" class="btn btn-secondary" (click)="deletedatDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

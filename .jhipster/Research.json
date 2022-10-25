@@ -1,0 +1,39 @@
+{
+  "changelogDate": "20220930094742",
+  "clientRootFolder": "researchdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "iduser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idcategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idzone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "zone",
+      "fieldType": "String"
+    }
+  ],
+  "microserviceName": "researchdb",
+  "microservicePath": "../research",
+  "name": "Research",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

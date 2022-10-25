@@ -1,0 +1,47 @@
+{
+  "changelogDate": "20220930093421",
+  "clientRootFolder": "requestdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "iduser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idcategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idproduct",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "modifiedat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "deletedat",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "microserviceName": "requestdb",
+  "microservicePath": "../request",
+  "name": "Request",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

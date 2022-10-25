@@ -1,0 +1,47 @@
+{
+  "changelogDate": "20220930091519",
+  "clientRootFolder": "messagedb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "iduser",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idproduct",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idsender",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "idreceiver",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "hiddenat",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "microserviceName": "messagedb",
+  "microservicePath": "../message",
+  "name": "Message",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
