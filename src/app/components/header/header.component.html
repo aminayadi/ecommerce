@@ -1,7 +1,45 @@
     
     <!-- header-start -->
     <header class="header d-blue-bg">
-      
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="header-inner-start">
+                                <div class="header__currency border-right">
+                                    <div class="s-name">
+                                        <span>Language: </span>
+                                    </div>
+                                    <select>
+                                        <option>English</option>
+                                        <option>Deutsch</option>
+                                        <option>Français</option>
+                                        <option>Espanol</option>
+                                    </select>
+                                </div>
+
+                                <div class="support d-none d-sm-block">
+                                    <p>Need Help? <a href="tel:+001123456789">+001 123 456 789</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                            <div class="header-inner-end text-md-end">
+                                <div class="ovic-menu-wrapper">
+                                    <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <!--<li><a href="contact.html">Order Tracking</a></li>-->
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="header-mid">
             <div class="container">
                 <div class="heade-mid-inner">
@@ -49,66 +87,7 @@
                                     My Account </span>
                                     </a>
                                 </div>
-                                <div class="block-wishlist action">
-                                    <a class="icon-link" href="wishlist.html">
-                                    <i class="flaticon-heart"></i>
-                                    <span class="count">0</span>
-                                    <span class="text">
-                                    <span class="sub">Favorite</span>
-                                    My Wishlist </span>
-                                    </a>
-                                </div>
-                                <div class="block-cart action">
-                                    <a class="icon-link" href="cart.html">
-                                    <i class="flaticon-shopping-bag"></i>
-                                    <span class="count">1</span>
-                                    <span class="text">
-                                    <span class="sub">Your Cart:</span>
-                                    $00.00 </span>
-                                    </a>
-                                    <div class="cart">
-                                        <div class="cart__mini">
-                                            <ul>
-                                                <li>
-                                                  <div class="cart__title">
-                                                    <h4>Your Cart</h4>
-                                                    <span>(1 Item in Cart)</span>
-                                                  </div>
-                                                </li>
-                                                <li>
-                                                  <div class="cart__item d-flex justify-content-between align-items-center">
-                                                    <div class="cart__inner d-flex">
-                                                      <div class="cart__thumb">
-                                                        <a href="product-details.html">
-                                                          <img src="assets/img/cart/20.jpg" alt="">
-                                                        </a>
-                                                      </div>
-                                                      <div class="cart__details">
-                                                        <h6><a href="product-details.html"> Samsung C49J89: £875, Debenhams Plus  </a></h6>
-                                                        <div class="cart__price">
-                                                          <span>$255.00</span>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                    <div class="cart__del">
-                                                        <a href="#"><i class="fal fa-times"></i></a>
-                                                    </div>
-                                                  </div>
-                                                </li>
-                                                <li>
-                                                  <div class="cart__sub d-flex justify-content-between align-items-center">
-                                                    <h6>Subtotal</h6>
-                                                    <span class="cart__sub-total">$255.00</span>
-                                                  </div>
-                                                </li>
-                                                <li>
-                                                    <a href="cart.html" class="wc-cart mb-10">View cart</a>
-                                                    <a href="checkout.html" class="wc-checkout">Checkout</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -311,6 +290,26 @@
                                                 <ng-container  *ngFor="let categ of allcategories">
                                                     <li *ngIf="categorie.name == categ.parent">
                                                         <a href="index.html" class="active" >{{categ.name}}</a>
+                                                        
+                                                            <ul class="mega-item">
+                                                 
+                                                                <ng-container  *ngFor="let cat of allcategories">
+                                                                    <li *ngIf="categ.name == cat.parent">
+                                                                        <a href="index.html"  >{{cat.name}}</a>
+
+
+
+
+
+                                                                    </li>
+                                                                </ng-container >
+            
+                                                            </ul>
+                                             
+
+
+
+
                                                     </li>
                                                 </ng-container >
 
@@ -324,9 +323,7 @@
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-9">
-                        <div class="shopeing-text text-sm-end">
-                            <p>Spend $120 more and get free shipping!</p>
-                        </div>
+
                     </div>
                 </div>
             </div>
