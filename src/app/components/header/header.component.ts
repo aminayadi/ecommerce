@@ -1,15 +1,19 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { CategoriesService } from 'src/app/services/categories.service';
+import { Categorie } from 'src/app/model/categorie';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
 
+
+export class HeaderComponent implements OnInit {
+  allcategories ! : Categorie[];
+  categories  : Categorie[] = [];
   
-  constructor(private elementRef: ElementRef, public _router: Router) { }
+  constructor(private elementRef: ElementRef, public _router: Router, private categoriesService:CategoriesService) { }
   ngOnInit() {
 
     var aa = document.createElement("script");
@@ -114,6 +118,19 @@ export class HeaderComponent implements OnInit {
     q.type = "text/javascript";
     q.src ="../../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(q);
-   
+ 
+    this.get();
   }
+  get() {
+    this.categoriesService.getAll().subscribe((data) => {
+      this. allcategories = data;
+
+      for (let i=0;i<this.allcategories.length;i++)
+        if(this.allcategories[i].parent==null)
+          this.categories.push(this.allcategories[i]);
+
+      console.log(data);
+    });
+  }
+
 }

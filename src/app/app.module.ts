@@ -8,6 +8,12 @@ import { MapComponent } from './components/map/map.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ProductsComponent } from './components/products/products.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +24,8 @@ import { ProductsComponent } from './components/products/products.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,  
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
