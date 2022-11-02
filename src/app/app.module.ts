@@ -9,7 +9,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { ProductsComponent } from './components/products/products.component';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,  
-    HttpClientModule
+    HttpClientModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
