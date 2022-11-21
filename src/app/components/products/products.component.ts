@@ -48,11 +48,11 @@ export class ProductsComponent implements OnInit {
   get() {
     this.productsService.getAll().subscribe((data) => {
       this. allproducts = data;
-
+/************************** 
       for (let i=0;i<this.allproducts.length;i++)
         if(this.allproducts[i].name==null)
           this.products.push(this.allproducts[i]);
-
+*********************************/
       console.log(data);
     });
   }

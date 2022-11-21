@@ -10,6 +10,7 @@ import { ProductsComponent } from './components/products/products.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
+import { AccountComponent } from './components/account/account.component';
 
 
 
@@ -20,7 +21,8 @@ import { SwiperModule } from 'swiper/angular';
     HeaderComponent,
     MapComponent,
     CategoriesComponent,
-    ProductsComponent
+    ProductsComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
