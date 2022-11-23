@@ -1,127 +1,36 @@
+<section class="recomand-product-area" *ngFor="let product of allproducts">
 
-<!--helloooo-->
-  <!-- recomand-product-area-start -->
-  <section class="recomand-product-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section__head d-flex justify-content-between mb-10">
-                    <div class="section__title">
-                        <h5 class="st-titile">Recommended For You</h5>
-                    </div>
-                    <div class="button-wrap">
-                        <a href="shop.html">See All Product <i class="fal fa-chevron-right"></i></a>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{{product.photo}}" class="img-responsive img-thumbnail" alt="">  
+            <h3>{{product.name}}</h3>
+            <p>{{product.description}}</p>
+            <p>{{product.zone}}</p>
+            <p>{{product.createdat}}</p>
+            <p>{{product.updatedat}}</p>
         </div>
-        <div class="row g-0">
-            <div class="product-bs-slider-2">
-                <div class="product-slider-3 swiper-container">
-                    <div class="swiper-wrapper">
 
-
-
-                        <div class="product__item mb-20 swiper-slide">
-                            <div class="product__thumb fix">
-                                <div class="product-image w-img">
-                                    <a href="product-details.html">
-                                        <img src="assets/img/product/tp-9.jpg" alt="product">
-                                    </a>
-                                </div>
-                                <div class="product-action">
-                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
-                                        <i class="fal fa-eye"></i>
-                                        <i class="fal fa-eye"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-heart"></i>
-                                        <i class="fal fa-heart"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-layer-group"></i>
-                                        <i class="fal fa-layer-group"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <h6><a href="product-details.html">Epple iPhone 11 Pro Max 64GB Gold</a></h6>
-                                <div class="rating mb-5">
-                                    <ul>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                    </ul>
-                                    <span>(01 review)</span>
-                                </div>
-                                <div class="price">
-                                    <span>$120.00-$140.00</span>
-                                </div>
-                            </div>
-                            <div class="product__add-cart text-center">
-                                <button type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-                                Add to Cart
-                                </button>
-                            </div>
-                        </div>
-
-
-                        <div class="product__item mb-20 swiper-slide" *ngFor="let product of allproducts">
-                            <div class="product__thumb fix">
-                                <div class="product-image w-img">
-                                    <a href="product-details.html">
-                                        <img src="{{product.photo}}" alt="product">
-                                    </a>
-                                </div>
-                                <div class="product__offer">
-                                <span class="discount">-15%</span>
-                                </div>
-                                <div class="product-action">
-                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
-                                        <i class="fal fa-eye"></i>
-                                        <i class="fal fa-eye"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-heart"></i>
-                                        <i class="fal fa-heart"></i>
-                                    </a>
-                                    <a href="#" class="icon-box icon-box-1">
-                                        <i class="fal fa-layer-group"></i>
-                                        <i class="fal fa-layer-group"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product__content">
-                                <h6><a href="product-details.html">{{product.name}}</a></h6>
-                                <div class="rating mb-5">
-                                    <ul>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
-                                    </ul>
-                                    <span>(01 review)</span>
-                                </div>
-                                <div class="price">
-                                    <span>$105-$110</span>
-                                </div>
-                            </div>
-                            <div class="product__add-cart text-center">
-                                <button type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-                                Add to Cart
-                                </button>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
+        <div class="box">
+            <img src="image/icon-2.png" alt="">
+            <h3>CSS 3</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
+            <a href="#" class="btn">read more</a>
         </div>
+
+        <div class="box">
+            <img src="image/icon-2.png" alt="">
+            <h3>CSS 3</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+        
+
     </div>
-</section>
-<!-- recomand-product-area-end -->
 
+</div>
+
+</section>

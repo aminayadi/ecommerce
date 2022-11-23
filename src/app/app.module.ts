@@ -11,6 +11,9 @@ import { ProductsComponent } from './components/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
 import { AccountComponent } from './components/account/account.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 
 
@@ -22,7 +25,11 @@ import { AccountComponent } from './components/account/account.component';
     MapComponent,
     CategoriesComponent,
     ProductsComponent,
-    AccountComponent
+    AccountComponent,
+    LoginComponent,
+    RegisterComponent,
+    AuthComponent,
+
   ],
   imports: [
     BrowserModule,

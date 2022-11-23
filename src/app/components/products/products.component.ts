@@ -14,34 +14,7 @@ export class ProductsComponent implements OnInit {
   constructor(private elementRef: ElementRef, public _router: Router, private productsService:ProductsService) { }
   ngOnInit() {
 
-    var aa = document.createElement("script");
-    aa.type = "text/javascript";
-    aa.src ="../../assets/js/vendor/jquery.js";
-    this.elementRef.nativeElement.appendChild(aa);
-
-   
-   
-
-
-
-
-
-    var b = document.createElement("script");
-    b.type = "text/javascript";
-    b.src ="../../assets/js/bootstrap-bundle.js";
-    this.elementRef.nativeElement.appendChild(b);
-
-
-
-    var e = document.createElement("script");
-    e.type = "text/javascript";
-    e.src ="../../assets/js/imagesloaded-pkgd.js";
-    this.elementRef.nativeElement.appendChild(e);
-
-  
-
-
-
+    
   
     this.get();
   }
