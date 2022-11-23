@@ -18,10 +18,15 @@ export class AccountComponent implements OnInit {
       isSignUpFailed = false;
       errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.form = this.formBuilder.group({
+        username: ['',Validators.required],
+        email: ['',Validators.required],
+        password: ['',Validators.required],
+       
+      });
   }
   
   onSubmit(): void {

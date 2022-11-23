@@ -13,7 +13,7 @@ import { SwiperModule } from 'swiper/angular';
 import { AccountComponent } from './components/account/account.component';
 import { HomeComponent } from './home/home.component';
 import { FooderComponent } from './components/fooder/fooder.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
@@ -32,7 +32,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     AppRoutingModule,  
     HttpClientModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
