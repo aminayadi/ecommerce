@@ -15,7 +15,6 @@ import { HomeComponent } from './home/home.component';
 import { FooderComponent } from './components/fooder/fooder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { LoginComponent } from './components/login/login.component';
     ProductsComponent,
     AccountComponent,
     HomeComponent,
-    FooderComponent,
-    LoginComponent
+    FooderComponent
   ],
   imports: [
     BrowserModule,
