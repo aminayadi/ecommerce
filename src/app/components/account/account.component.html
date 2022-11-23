@@ -83,7 +83,7 @@
                                      <a href="#">Lost your password?</a>
                                   </span>
                               </div>
-                              <a href="login.html" class="tp-in-btn w-100">log in</a>
+                              <a href="" class="tp-in-btn w-100">log in</a>
                           </form>
                       </div>
                   </div>
@@ -119,11 +119,34 @@
                                   </div>
                                 </div>
                               <label for="userpass">Password <span>*</span></label>
-                              <input id="userpass" type="password" placeholder="Enter password...">
+                              <input id="userpass" type="password" placeholder="Enter password..."
+                              
+                              
+                              type="password"
+                              class="form-control"
+                              name="password"
+                              [(ngModel)]="form.password"
+                              required
+                              minlength="6"
+                              #password="ngModel"
+                              
+                              
+                              
+                              >
                               <div class="login-action mb-10 fix">
                                   <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy</a>.</p>
                               </div>
                               <a href="" class="tp-in-btn w-100">Register</a>
+
+
+                              <div class="form-group">
+                                <button class="btn btn-primary btn-block">Sign Up</button>
+                              </div>
+                        
+                              <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                                Signup failed!<br />{{ errorMessage }}
+                              </div>
+
                           </form>
                       </div>
                   </div>
