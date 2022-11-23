@@ -18,6 +18,8 @@ export class AccountComponent implements OnInit {
       isSignUpFailed = false;
       errorMessage = '';
 
+      
+
   constructor(private authService: AuthService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
