@@ -13,6 +13,7 @@ import { SwiperModule } from 'swiper/angular';
 import { AccountComponent } from './components/account/account.component';
 import { HomeComponent } from './home/home.component';
 import { FooderComponent } from './components/fooder/fooder.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -32,7 +33,8 @@ import { FooderComponent } from './components/fooder/fooder.component';
     BrowserModule,
     AppRoutingModule,  
     HttpClientModule,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

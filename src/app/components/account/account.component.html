@@ -90,11 +90,34 @@
                     <div class="col-lg-6">
                         <div class="basic-login">
                             <h5>Register</h5>
-                            <form action="#">
+                            <form *ngIf="!isSuccessful"
+                            name="form"
+                            (ngSubmit)="f.form.valid && onSubmit()"
+                            #f="ngForm"
+                            novalidate>
                                 <label for="username">Username or email address  <span>*</span></label>
-                                <input id="username" type="text" placeholder="Enter Username">
+                                <input type="text"
+                                class="form-control"
+                                name="username"
+                                [(ngModel)]="form.username"
+                                required
+                                minlength="3"
+                                maxlength="20"
+                                #username="ngModel">
                                 <label for="email-id">Email Address <span>*</span></label>
-                                <input id="email-id" type="text" placeholder="Email address...">
+                                <input type="email"
+                                class="form-control"
+                                name="email"
+                                [(ngModel)]="form.email"
+                                required
+                                email
+                                #email="ngModel">
+                                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                                    <div *ngIf="email.errors['required']">Email is required</div>
+                                    <div *ngIf="email.errors['email']">
+                                      Email must be a valid email address
+                                    </div>
+                                  </div>
                                 <label for="userpass">Password <span>*</span></label>
                                 <input id="userpass" type="password" placeholder="Enter password...">
                                 <div class="login-action mb-10 fix">
