@@ -14,9 +14,7 @@ import { AccountComponent } from './components/account/account.component';
 import { HomeComponent } from './home/home.component';
 import { FooderComponent } from './components/fooder/fooder.component';
 import { FormsModule } from '@angular/forms';
-
-
-
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     SwiperModule,
     FormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
