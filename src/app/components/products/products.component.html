@@ -1,33 +1,42 @@
-<section class="recomand-product-area" *ngFor="let product of allproducts">
-
-<div class="container">
-
-
-    <div class="box-container">
-
-        <div class="box">
-            <img src="{{product.photo}}" class="img-responsive img-thumbnail" alt="">  
-            <h3>{{product.name}}</h3>
-            <p>{{product.description}}</p>
-            <p>{{product.zone}}</p>
-            <p>{{product.createdat}}</p>
-            <p>{{product.updatedat}}</p>
+<section class="recomand-product-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section__head d-flex justify-content-between mb-10">
+                    <div class="section__title">
+                        <h5 class="st-titile">Top product</h5>
+                    </div>
+                    <div class="button-wrap">
+                        <a href="shop.html">See All Product <i class="fal fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
+       
+    </div>
+</section>
+<section class="banner__area pt-20 pb-10" >
 
-        <div class="box">
-            <img src="image/icon-2.png" alt="">
-            <h3>CSS 3</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-            <a href="#" class="btn">read more</a>
-        </div>
+<div class="container" >
 
-        <div class="box">
-            <img src="image/icon-2.png" alt="">
-            <h3>CSS 3</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-            <a href="#" class="btn">read more</a>
-        </div>
+
+    <div class="box-container" >
+
+                <div class="row" >
+                    <div class="col-xl-4 col-lg-4 col-md-6" *ngFor="let product of allproducts">
+                        <div class="banner__item p-relative w-img mb-30" >
+                            <div class="banner__img" style="max-height:450px " >
+                                <img [src]="'data:' + product.photoContentType + ';base64,' + product.photo"  alt="product image" />
+                            </div>
         
+                            <div class="banner__content" >
+                                <h6><b>{{product.name}}</b></h6>
+                            </div>
+        
+                        </div>
+                    </div>
+                    
+                </div>
 
     </div>
 

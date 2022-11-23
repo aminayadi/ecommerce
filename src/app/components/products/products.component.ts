@@ -11,13 +11,25 @@ export class ProductsComponent implements OnInit {
 
   allproducts ! : Product[];
   products  : Product[] = [];
+  private dataUtils: any;
+
   constructor(private elementRef: ElementRef, public _router: Router, private productsService:ProductsService) { }
   ngOnInit() {
 
-    
-  
     this.get();
   }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    return this.dataUtils.openFile(base64String, contentType);
+  }
+
+
+
+  
   get() {
     this.productsService.getAll().subscribe((data) => {
       this. allproducts = data;
