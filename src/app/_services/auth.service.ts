@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post('http://192.168.1.172:8080/api/register', {
+    return this.http.post('192.168.1.172:8080/api/register', {
       'login' : username,
       'email' : email,
       'password' : password

@@ -31,9 +31,10 @@ export class AccountComponent implements OnInit {
   
   onSubmit(): void {
     const { username, email, password } = this.form;
-
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     this.authService.register(username, email, password).subscribe({
       next: (data: any) => {
+        console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
