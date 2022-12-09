@@ -39,6 +39,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Research' },
         loadChildren: () => import('./researchdb/research/research.module').then(m => m.ResearchdbResearchModule),
       },
+      {
+        path: 'fields',
+        data: { pageTitle: 'Fields' },
+        loadChildren: () => import('./categorydb/fields/fields.module').then(m => m.CategorydbFieldsModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

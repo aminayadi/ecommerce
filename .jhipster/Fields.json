@@ -1,0 +1,34 @@
+{
+  "changelogDate": "20221209090735",
+  "clientRootFolder": "categorydb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "etype",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "STRING,NUMBER,DATE"
+    }
+  ],
+  "microserviceName": "categorydb",
+  "microservicePath": "../category",
+  "name": "Fields",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "category",
+      "relationshipName": "category",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceClass"
+}
