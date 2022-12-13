@@ -5,7 +5,10 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'auth',component:AccountComponent}
+  {path:'auth',component:AccountComponent},
+  {path:'admin/category',
+  redirectTo: 'category/home'
+},
 ];
 
 @NgModule({

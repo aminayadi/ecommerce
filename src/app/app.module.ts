@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { FooderComponent } from './components/fooder/fooder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { CategoryModule } from './category/category.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     HttpClientModule,
     SwiperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CategoryModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
