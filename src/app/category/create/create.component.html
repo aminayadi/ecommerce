@@ -1,7 +1,47 @@
+
+
+<!-- offcanvas area start -->
+<div class="offcanvas__area">
+  <div class="offcanvas__wrapper">
+      <div class="offcanvas__close">
+          <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+              <i class="fal fa-times"></i>
+          </button>
+      </div>
+      <div class="offcanvas__content">
+          <div class="offcanvas__logo mb-40">
+              <a href="index.html">
+                  <img src="assets/img/logo/logo-white.png" alt="logo">
+              </a>
+          </div>
+          <div class="offcanvas__search mb-25">
+              <form action="#">
+                  <input type="text" placeholder="What are you searching for?">
+                  <button type="submit"><i class="far fa-search"></i></button>
+              </form>
+          </div>
+          <div class="mobile-menu fix"></div>
+          <div class="offcanvas__action">
+
+          </div>
+      </div>
+  </div>
+</div>
+<!-- offcanvas area end -->
+<div class="body-overlay"></div>
+<!-- offcanvas area end -->
+
+
+<div class="account-area mt-70 mb-70">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6">
+
+
 <form [formGroup]="categoryForm" (ngSubmit)="submit()">
     <div class="header">Category</div>
     <div>
-      <input class="input" formControlName="name" type="text" placeholder="Enter category name..."/>
+      <input class="input form-control" formControlName="name" type="text" placeholder="Enter category name..."/>
       <div *ngIf="canShowError('name')">
         <div class="error" *ngIf="hasError('name', 'required')">
           Category Name is required.
@@ -9,14 +49,46 @@
       </div>
     </div>
     <div>
-      <input class="input" formControlName="parent" type="text" placeholder="Enter category parent..."/>
+      <input class="input form-control" formControlName="parent" type="text" placeholder="Enter category parent..."/>
+
+
+      <select
+
+        id="parent"
+        data-cy="parent"
+        name="parent"
+        formControlName="parent"
+      >
+        <option [ngValue]="parentOption" *ngFor="let parentOption of categories">{{ parentOption.name }}</option>
+      </select>
+
+
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="header">Fields</div>
     <app-field-list [fields]="fields"></app-field-list>
     <div>
       <button class="button" type="button" (click)="addField()">Add New Field</button>
     </div>
-    <div>
-      <button class="button" type="submit" [disabled]="categoryForm.invalid">Save</button>
+    <div class="form-group">
+      <button class="button tp-in-btn w-100" type="submit" [disabled]="categoryForm.invalid">Save</button>
     </div>
   </form>
+
+
+</div>
+</div>
+</div>
+</div>

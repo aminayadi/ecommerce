@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Categorie } from 'src/app/model/categorie';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { FieldsService } from '../fields.service';
 @Component({
   selector: 'app-create',
@@ -8,10 +10,12 @@ import { FieldsService } from '../fields.service';
 })
 export class CreateComponent implements OnInit {
 
+  categories  : Categorie[] = [];
   categoryForm: FormGroup;
   fields!: FormArray
 
   constructor(
+    private categoriesService:CategoriesService,
     private _fieldsService: FieldsService,
     private _formBuilder: FormBuilder) {
     this.fields = this._formBuilder.array([
@@ -32,6 +36,7 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   addField() {
@@ -61,4 +66,18 @@ export class CreateComponent implements OnInit {
   submit() {
     console.log(this.categoryForm.value);
   }
+
+  getCategories() {
+    this.categoriesService.getAll().subscribe((data) => {
+      this. categories = data;
+
+      for (let i=0;i<this.categories.length;i++)
+        if(this.categories[i].parent==null)
+          this.categories.push(this.categories[i]);
+
+      console.log(data);
+    });
+  }
+
+
 }

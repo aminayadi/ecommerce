@@ -7,7 +7,7 @@ import { FieldComponent } from './field/field.component';
 import { FieldListComponent } from './field-list/field-list.component';
 import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HeaderComponent } from '../components/header/header.component';
 @NgModule({
   declarations: [
     HomeComponent,

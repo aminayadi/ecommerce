@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    padding: 1rem;
+    border: 1px solid black;
+  }
+  
+  .input {
+    padding: .5rem;
+    margin: .5rem 0;
+  }
+  
+  .button {
+    padding: .5rem;
+    margin: .5rem 0;
+  }
+  
+  .error {
+    color: red;
+  }
