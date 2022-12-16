@@ -45,6 +45,25 @@ public class FieldsService {
     }
 
     /**
+     * Save a list of fields.
+     *
+     * @param fieldsDTO the entity to save.
+     * @return the persisted entity.
+     */
+    public int saveList(List<FieldsDTO>  fieldsDTOList) {
+        log.debug("Request to save list of Fields : {}", fieldsDTOList);
+        int nbSaved = 0;
+        
+        for (nbSaved=0; nbSaved<fieldsDTOList.size(); nbSaved++)
+        {
+	        Fields fields = fieldsMapper.toEntity(fieldsDTOList.get(nbSaved));
+	        fields = fieldsRepository.save(fields);
+        }
+        
+        return nbSaved;
+    }
+    
+    /**
      * Update a fields.
      *
      * @param fieldsDTO the entity to save.

@@ -61,6 +61,21 @@ public class FieldsResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId()))
             .body(result);
     }
+    
+    
+    /**
+     * {@code POST  /fields} : Create a list of new fields.
+     *
+     * @param fieldsDTO the fieldsDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new fieldsDTO, or with status {@code 400 (Bad Request)} if the fields has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/fieldslist")
+    public int createFieldsList(@Valid @RequestBody List<FieldsDTO> fieldsDTOList) throws URISyntaxException {
+        log.debug("REST request to save Fields List : {}", fieldsDTOList);
+        return fieldsService.saveList(fieldsDTOList);
+    }    
+    
 
     /**
      * {@code PUT  /fields/:id} : Updates an existing fields.

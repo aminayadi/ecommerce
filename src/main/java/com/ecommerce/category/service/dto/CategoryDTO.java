@@ -2,7 +2,10 @@ package com.ecommerce.category.service.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
+
+import com.ecommerce.category.domain.Fields;
 
 /**
  * A DTO for the {@link com.ecommerce.category.domain.Category} entity.
@@ -23,6 +26,9 @@ public class CategoryDTO implements Serializable {
     private LocalDate updatedat;
 
     private String parent;
+    
+    private List<FieldsDTO> lFields; 
+    
 
     public String getId() {
         return id;
@@ -101,17 +107,24 @@ public class CategoryDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "CategoryDTO{" +
-            "id='" + getId() + "'" +
-            ", idparent=" + getIdparent() +
-            ", name='" + getName() + "'" +
-            ", status=" + getStatus() +
-            ", createdat='" + getCreatedat() + "'" +
-            ", updatedat='" + getUpdatedat() + "'" +
-            ", parent='" + getParent() + "'" +
-            "}";
-    }
+
+	public List<FieldsDTO> getlFields() {
+		return lFields;
+	}
+
+	public void setlFields(List<FieldsDTO> lFields) {
+		this.lFields = lFields;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoryDTO [id=" + id + ", idparent=" + idparent + ", name=" + name + ", status=" + status
+				+ ", createdat=" + createdat + ", updatedat=" + updatedat + ", parent=" + parent + ", lFields="
+				+ lFields + "]";
+	}
+	
+	
+	
+	
+	
 }

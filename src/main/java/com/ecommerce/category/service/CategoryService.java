@@ -1,6 +1,7 @@
 package com.ecommerce.category.service;
 
 import com.ecommerce.category.domain.Category;
+import com.ecommerce.category.domain.Fields;
 import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.service.dto.CategoryDTO;
 import com.ecommerce.category.service.mapper.CategoryMapper;
@@ -23,10 +24,13 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     private final CategoryMapper categoryMapper;
+    
+    private final FieldsService fieldsService;
 
-    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public CategoryService(FieldsService fieldsService, CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
+        this.fieldsService = fieldsService;
     }
 
     /**
@@ -38,6 +42,8 @@ public class CategoryService {
     public CategoryDTO save(CategoryDTO categoryDTO) {
         log.debug("Request to save Category : {}", categoryDTO);
         Category category = categoryMapper.toEntity(categoryDTO);
+        List<FieldsDTO> lfields = categoryDTO.getlFields();
+        return fieldsService.saveList(lfields);
         category = categoryRepository.save(category);
         return categoryMapper.toDto(category);
     }
