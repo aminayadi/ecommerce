@@ -1,5 +1,6 @@
 package com.ecommerce.category.service;
 
+import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.Fields;
 import com.ecommerce.category.repository.FieldsRepository;
 import com.ecommerce.category.service.dto.FieldsDTO;
@@ -50,13 +51,14 @@ public class FieldsService {
      * @param fieldsDTO the entity to save.
      * @return the persisted entity.
      */
-    public int saveList(List<FieldsDTO>  fieldsDTOList) {
+    public int saveList(List<FieldsDTO>  fieldsDTOList, Category category) {
         log.debug("Request to save list of Fields : {}", fieldsDTOList);
         int nbSaved = 0;
         
         for (nbSaved=0; nbSaved<fieldsDTOList.size(); nbSaved++)
         {
 	        Fields fields = fieldsMapper.toEntity(fieldsDTOList.get(nbSaved));
+	        fields.setCategory(category);
 	        fields = fieldsRepository.save(fields);
         }
         

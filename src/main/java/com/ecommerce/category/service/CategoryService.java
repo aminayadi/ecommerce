@@ -4,6 +4,7 @@ import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.Fields;
 import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.service.dto.CategoryDTO;
+import com.ecommerce.category.service.dto.FieldsDTO;
 import com.ecommerce.category.service.mapper.CategoryMapper;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,8 +44,11 @@ public class CategoryService {
         log.debug("Request to save Category : {}", categoryDTO);
         Category category = categoryMapper.toEntity(categoryDTO);
         List<FieldsDTO> lfields = categoryDTO.getlFields();
-        return fieldsService.saveList(lfields);
+        
         category = categoryRepository.save(category);
+      
+        fieldsService.saveList(lfields,category);
+        
         return categoryMapper.toDto(category);
     }
 
