@@ -1,1 +1,22 @@
-<p>create works!</p>
+<form [formGroup]="categoryForm" (ngSubmit)="submit()">
+    <div class="header">Category</div>
+    <div>
+      <input class="input" formControlName="name" type="text" placeholder="Enter category name..."/>
+      <div *ngIf="canShowError('name')">
+        <div class="error" *ngIf="hasError('name', 'required')">
+          Category Name is required.
+        </div>
+      </div>
+    </div>
+    <div>
+      <input class="input" formControlName="parent" type="text" placeholder="Enter category parent..."/>
+    </div>
+    <div class="header">Fields</div>
+    <app-field-list [fields]="fields"></app-field-list>
+    <div>
+      <button class="button" type="button" (click)="addField()">Add New Field</button>
+    </div>
+    <div>
+      <button class="button" type="submit" [disabled]="categoryForm.invalid">Save</button>
+    </div>
+  </form>

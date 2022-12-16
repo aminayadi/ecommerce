@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-field-list',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FieldListComponent implements OnInit {
 
+  @Input() fields!: FormArray;
+
+  get fieldsControls() {
+    return this.fields.controls as FormGroup[];
+  }
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }
+
+

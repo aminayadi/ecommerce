@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryModule } from './category/category.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

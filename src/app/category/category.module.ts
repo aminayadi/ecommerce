@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FieldComponent } from './field/field.component';
 import { FieldListComponent } from './field-list/field-list.component';
 import { CreateComponent } from './create/create.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,9 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule
+    CategoryRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CategoryModule { }

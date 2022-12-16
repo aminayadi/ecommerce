@@ -1,1 +1,21 @@
-<p>field works!</p>
+<form [formGroup]="fieldForm">
+    <div>
+      <input class="input" formControlName="name" type="text" placeholder="Enter Field Name"/>
+      <div *ngIf="canShowError('name')">
+        <div class="error" *ngIf="hasError('name', 'required')">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div>
+        <input class="input" formControlName="type" type="text" placeholder="Enter Field type"/>
+        <div *ngIf="canShowError('name')">
+          <div class="error" *ngIf="hasError('type', 'required')">
+            type is required.
+          </div>
+        </div>
+      </div>
+     <div>
+      <button class="button" (click)="deleteField()">Delete</button>
+    </div>
+  </form>

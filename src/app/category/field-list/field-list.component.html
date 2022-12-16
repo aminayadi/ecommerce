@@ -1,1 +1,3 @@
-<p>field-list works!</p>
+<div *ngFor="let field of fieldsControls; let index = index" >
+    <app-field [index]="index" [fieldForm]="field"></app-field>
+  </div>
