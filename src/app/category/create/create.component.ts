@@ -65,16 +65,21 @@ export class CreateComponent implements OnInit {
 
   submit() {
     console.log(this.categoryForm.value);
+    this.categoriesService.create(this.categoryForm.value)
+    .subscribe({
+      next:(data) => {
+        console.log("success .....");
+      },
+      error:(err) => {
+        console.log(err);
+      }
+    })
   }
 
   getCategories() {
+    console.log("Enter to get categories ...... ");
     this.categoriesService.getAll().subscribe((data) => {
       this. categories = data;
-
-      for (let i=0;i<this.categories.length;i++)
-        if(this.categories[i].parent==null)
-          this.categories.push(this.categories[i]);
-
       console.log(data);
     });
   }
