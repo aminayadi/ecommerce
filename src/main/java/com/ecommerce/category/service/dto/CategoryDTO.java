@@ -27,7 +27,7 @@ public class CategoryDTO implements Serializable {
 
     private String parent;
     
-    private List<FieldsDTO> lFields; 
+    private List<FieldsDTO> fields; 
     
 
     public String getId() {
@@ -108,19 +108,21 @@ public class CategoryDTO implements Serializable {
     }
 
 
-	public List<FieldsDTO> getlFields() {
-		return lFields;
+
+
+	public List<FieldsDTO> getFields() {
+		return fields;
 	}
 
-	public void setlFields(List<FieldsDTO> lFields) {
-		this.lFields = lFields;
+	public void setFields(List<FieldsDTO> fields) {
+		this.fields = fields;
 	}
 
 	@Override
 	public String toString() {
 		return "CategoryDTO [id=" + id + ", idparent=" + idparent + ", name=" + name + ", status=" + status
 				+ ", createdat=" + createdat + ", updatedat=" + updatedat + ", parent=" + parent + ", lFields="
-				+ lFields + "]";
+				+ fields + "]";
 	}
 	
 	
