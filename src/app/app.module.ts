@@ -16,6 +16,7 @@ import { FooderComponent } from './components/fooder/fooder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CategoryModule } from './category/category.module';
     SwiperModule,
     FormsModule,
     ReactiveFormsModule,
-    CategoryModule
+    CategoryModule,
+    ProductModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

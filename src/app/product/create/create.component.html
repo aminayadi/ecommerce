@@ -1,0 +1,32 @@
+<div class="account-area mt-70 mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+              <form [formGroup]="productForm" >
+                <div class="header">Product</div>
+                <div>
+                  <input class="input form-control" formControlName="name" type="text" placeholder="Enter product name..."/>
+                  <div *ngIf="canShowError('name')">
+                    <div class="error" *ngIf="hasError('name', 'required')">
+                      product Name is required.
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <select  formControlName="category" placeholder="select" >
+                    <option [ngValue]=""></option>
+                    <option *ngFor="let catalog of categories" [ngValue]="catalog.name">{{catalog.name}}</option>
+                  </select>
+                </div>
+
+
+
+                <div class="form-group">
+                  <button class="button tp-in-btn w-100"  type="button" (click)="submit()" >Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  
