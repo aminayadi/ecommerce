@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
 import { CategoriesService } from 'src/app/services/categories.service';
 
@@ -12,7 +12,17 @@ export class CreateComponent implements OnInit {
   categories  : Categorie[] = [];
   productForm!: FormGroup;
 
-  constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { }
+  constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { 
+
+    this.productForm = this._formBuilder.group({
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+
+  });
+
+
+
+  }
 
   ngOnInit(): void {
     this.getCategories();
@@ -21,7 +31,7 @@ export class CreateComponent implements OnInit {
   getCategories() {
     console.log("Enter to get categories ...... ");
     this.categoriesService.getAll().subscribe((data) => {
-      this. categories = data;
+      this.categories = data;
       console.log(data);
     });
   }
