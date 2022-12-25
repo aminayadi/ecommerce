@@ -91,7 +91,14 @@ public class CategoryService {
      */
     public List<CategoryDTO> findAll() {
         log.debug("Request to get all Categories");
-        return categoryRepository.findAll().stream().map(categoryMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        List<CategoryDTO> listCategoryDTO =  categoryRepository.findAll().stream().map(categoryMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    
+        for (int i=0; i<listCategoryDTO.size(); i++)
+        {
+        	listCategoryDTO.get(i).setFields(fieldsService.findAllByCategory(listCategoryDTO.get(i).getId()));
+        }
+    
+        return listCategoryDTO ;
     }
 
     /**

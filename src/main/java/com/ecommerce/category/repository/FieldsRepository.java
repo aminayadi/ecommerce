@@ -22,4 +22,8 @@ public interface FieldsRepository extends MongoRepository<Fields, String> {
 
     @Query("{'id': ?0}")
     Optional<Fields> findOneWithEagerRelationships(String id);
+    
+    
+    @Query("{'mother.id' : :#{#id}}")
+    List<Fields> findAllByCategory(String id);
 }

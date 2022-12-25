@@ -109,6 +109,17 @@ public class FieldsService {
         log.debug("Request to get all Fields");
         return fieldsRepository.findAll().stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
+    
+    
+    /**
+     * Get all the fields by category.
+     *
+     * @return the list of entities.
+     */
+    public List<FieldsDTO> findAllByCategory(String Id) {
+        log.debug("Request to get all Fields by category id");
+        return fieldsRepository.findAllByCategory(Id).stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
 
     /**
      * Get all the fields with eager load of many-to-many relationships.
