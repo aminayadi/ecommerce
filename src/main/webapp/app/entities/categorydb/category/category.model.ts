@@ -8,6 +8,7 @@ export interface ICategory {
   createdat?: dayjs.Dayjs | null;
   updatedat?: dayjs.Dayjs | null;
   parent?: string | null;
+  mother?: Pick<ICategory, 'id'> | null;
 }
 
 export type NewCategory = Omit<ICategory, 'id'> & { id: null };

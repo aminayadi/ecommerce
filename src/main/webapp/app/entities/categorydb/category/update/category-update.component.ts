@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { CategoryFormService, CategoryFormGroup } from './category-form.service';
 import { ICategory } from '../category.model';
@@ -16,6 +16,8 @@ export class CategoryUpdateComponent implements OnInit {
   isSaving = false;
   category: ICategory | null = null;
 
+  categoriesSharedCollection: ICategory[] = [];
+
   editForm: CategoryFormGroup = this.categoryFormService.createCategoryFormGroup();
 
   constructor(
@@ -24,12 +26,16 @@ export class CategoryUpdateComponent implements OnInit {
     protected activatedRoute: ActivatedRoute
   ) {}
 
+  compareCategory = (o1: ICategory | null, o2: ICategory | null): boolean => this.categoryService.compareCategory(o1, o2);
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ category }) => {
       this.category = category;
       if (category) {
         this.updateForm(category);
       }
+
+      this.loadRelationshipsOptions();
     });
   }
 
@@ -69,5 +75,22 @@ export class CategoryUpdateComponent implements OnInit {
   protected updateForm(category: ICategory): void {
     this.category = category;
     this.categoryFormService.resetForm(this.editForm, category);
+
+    this.categoriesSharedCollection = this.categoryService.addCategoryToCollectionIfMissing<ICategory>(
+      this.categoriesSharedCollection,
+      category.mother
+    );
+  }
+
+  protected loadRelationshipsOptions(): void {
+    this.categoryService
+      .query()
+      .pipe(map((res: HttpResponse<ICategory[]>) => res.body ?? []))
+      .pipe(
+        map((categories: ICategory[]) =>
+          this.categoryService.addCategoryToCollectionIfMissing<ICategory>(categories, this.category?.mother)
+        )
+      )
+      .subscribe((categories: ICategory[]) => (this.categoriesSharedCollection = categories));
   }
 }

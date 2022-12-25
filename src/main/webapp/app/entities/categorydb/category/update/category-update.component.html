@@ -64,6 +64,21 @@
           <label class="form-label" for="field_parent">Parent</label>
           <input type="text" class="form-control" name="parent" id="field_parent" data-cy="parent" formControlName="parent" />
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_mother">Mother</label>
+          <select
+            class="form-control"
+            id="field_mother"
+            data-cy="mother"
+            name="mother"
+            formControlName="mother"
+            [compareWith]="compareCategory"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="categoryOption" *ngFor="let categoryOption of categoriesSharedCollection">{{ categoryOption.id }}</option>
+          </select>
+        </div>
       </div>
 
       <div>

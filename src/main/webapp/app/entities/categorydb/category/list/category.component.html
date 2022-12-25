@@ -74,6 +74,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="mother.id">
+            <div class="d-flex">
+              <span>Mother</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -88,6 +94,11 @@
           <td>{{ category.createdat | formatMediumDate }}</td>
           <td>{{ category.updatedat | formatMediumDate }}</td>
           <td>{{ category.parent }}</td>
+          <td>
+            <div *ngIf="category.mother">
+              <a [routerLink]="['/category', category.mother.id, 'view']">{{ category.mother.id }}</a>
+            </div>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

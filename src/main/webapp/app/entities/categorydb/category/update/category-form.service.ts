@@ -24,6 +24,7 @@ type CategoryFormGroupContent = {
   createdat: FormControl<ICategory['createdat']>;
   updatedat: FormControl<ICategory['updatedat']>;
   parent: FormControl<ICategory['parent']>;
+  mother: FormControl<ICategory['mother']>;
 };
 
 export type CategoryFormGroup = FormGroup<CategoryFormGroupContent>;
@@ -49,6 +50,7 @@ export class CategoryFormService {
       createdat: new FormControl(categoryRawValue.createdat),
       updatedat: new FormControl(categoryRawValue.updatedat),
       parent: new FormControl(categoryRawValue.parent),
+      mother: new FormControl(categoryRawValue.mother),
     });
   }
 

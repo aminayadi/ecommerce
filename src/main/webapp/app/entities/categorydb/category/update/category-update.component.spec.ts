@@ -45,12 +45,37 @@ describe('Category Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Category query and add missing value', () => {
       const category: ICategory = { id: 'CBA' };
+      const mother: ICategory = { id: '65cc87b2-cb97-4ef6-b74b-717d350860ab' };
+      category.mother = mother;
+
+      const categoryCollection: ICategory[] = [{ id: '69fba886-cf09-4818-93d9-749778da3738' }];
+      jest.spyOn(categoryService, 'query').mockReturnValue(of(new HttpResponse({ body: categoryCollection })));
+      const additionalCategories = [mother];
+      const expectedCollection: ICategory[] = [...additionalCategories, ...categoryCollection];
+      jest.spyOn(categoryService, 'addCategoryToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ category });
       comp.ngOnInit();
 
+      expect(categoryService.query).toHaveBeenCalled();
+      expect(categoryService.addCategoryToCollectionIfMissing).toHaveBeenCalledWith(
+        categoryCollection,
+        ...additionalCategories.map(expect.objectContaining)
+      );
+      expect(comp.categoriesSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const category: ICategory = { id: 'CBA' };
+      const mother: ICategory = { id: '7ed0ce5a-2ddd-4046-83c7-c1ebed3cf648' };
+      category.mother = mother;
+
+      activatedRoute.data = of({ category });
+      comp.ngOnInit();
+
+      expect(comp.categoriesSharedCollection).toContain(mother);
       expect(comp.category).toEqual(category);
     });
   });
@@ -120,6 +145,18 @@ describe('Category Management Update Component', () => {
       expect(categoryService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareCategory', () => {
+      it('Should forward to categoryService', () => {
+        const entity = { id: 'ABC' };
+        const entity2 = { id: 'CBA' };
+        jest.spyOn(categoryService, 'compareCategory');
+        comp.compareCategory(entity, entity2);
+        expect(categoryService.compareCategory).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

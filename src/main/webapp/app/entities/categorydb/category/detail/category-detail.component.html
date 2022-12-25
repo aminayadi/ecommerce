@@ -38,6 +38,12 @@
         <dd>
           <span>{{ category.parent }}</span>
         </dd>
+        <dt><span>Mother</span></dt>
+        <dd>
+          <div *ngIf="category.mother">
+            <a [routerLink]="['/category', category.mother.id, 'view']">{{ category.mother.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
