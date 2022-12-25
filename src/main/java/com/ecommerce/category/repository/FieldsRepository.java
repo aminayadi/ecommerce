@@ -1,5 +1,6 @@
 package com.ecommerce.category.repository;
 
+import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.Fields;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,6 @@ public interface FieldsRepository extends MongoRepository<Fields, String> {
     Optional<Fields> findOneWithEagerRelationships(String id);
     
     
-    @Query("{'mother.id' : :#{#id}}")
-    List<Fields> findAllByCategory(String id);
+    // {'category' : 'category'}
+    List<Fields> findByCategory(Category category);
 }

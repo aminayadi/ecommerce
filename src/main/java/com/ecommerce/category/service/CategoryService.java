@@ -95,7 +95,8 @@ public class CategoryService {
     
         for (int i=0; i<listCategoryDTO.size(); i++)
         {
-        	listCategoryDTO.get(i).setFields(fieldsService.findAllByCategory(listCategoryDTO.get(i).getId()));
+        	listCategoryDTO.get(i).setFields(fieldsService.findAllByCategory(listCategoryDTO.get(i)));
+        	log.debug("i : --------",i,"      listCategoryDTO ; ",listCategoryDTO);
         }
     
         return listCategoryDTO ;

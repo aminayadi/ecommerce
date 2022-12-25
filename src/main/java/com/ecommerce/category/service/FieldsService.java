@@ -3,7 +3,9 @@ package com.ecommerce.category.service;
 import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.Fields;
 import com.ecommerce.category.repository.FieldsRepository;
+import com.ecommerce.category.service.dto.CategoryDTO;
 import com.ecommerce.category.service.dto.FieldsDTO;
+import com.ecommerce.category.service.mapper.CategoryMapper;
 import com.ecommerce.category.service.mapper.FieldsMapper;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,10 +28,13 @@ public class FieldsService {
     private final FieldsRepository fieldsRepository;
 
     private final FieldsMapper fieldsMapper;
+    
+    private final CategoryMapper categoryMapper;
 
-    public FieldsService(FieldsRepository fieldsRepository, FieldsMapper fieldsMapper) {
+    public FieldsService(FieldsRepository fieldsRepository, FieldsMapper fieldsMapper, CategoryMapper categoryMapper) {
         this.fieldsRepository = fieldsRepository;
         this.fieldsMapper = fieldsMapper;
+        this.categoryMapper = categoryMapper ;
     }
 
     /**
@@ -116,9 +121,10 @@ public class FieldsService {
      *
      * @return the list of entities.
      */
-    public List<FieldsDTO> findAllByCategory(String Id) {
-        log.debug("Request to get all Fields by category id");
-        return fieldsRepository.findAllByCategory(Id).stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    public List<FieldsDTO> findAllByCategory(CategoryDTO mother) {
+        log.debug("Request to get all Fields by category mother : ", mother);
+        Category category = categoryMapper.toEntity(mother);
+        return fieldsRepository.findByCategory(category).stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

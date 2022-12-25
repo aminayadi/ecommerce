@@ -31,7 +31,6 @@ public class Fields implements Serializable {
 
     @DBRef
     @Field("category")
-    @JsonIgnoreProperties(value = { "mother" }, allowSetters = true)
     private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
