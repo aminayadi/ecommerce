@@ -13,9 +13,9 @@
                 </div>
               </div>
               <div>
-                <select  formControlName="parent" placeholder="select" >
+                <select  formControlName="mother" placeholder="select" >
                   <option [ngValue]=""></option>
-                  <option *ngFor="let catalog of categories" [ngValue]="catalog.name">{{catalog.name}}</option>
+                  <option *ngFor="let catalog of categories" [ngValue]="catalog">{{catalog.name}}</option>
                 </select>
               </div>
               <div class="header">Fields</div>

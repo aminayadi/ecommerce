@@ -27,7 +27,7 @@ export class CreateComponent implements OnInit {
 
     this.categoryForm = this._formBuilder.group({
         name: ['', Validators.required],
-        parent: ['', Validators.required],
+        mother: null,
         fields: this.fields,
     });
 

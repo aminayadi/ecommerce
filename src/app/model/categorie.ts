@@ -3,5 +3,6 @@ export class Categorie {
     name!:string;
     idparent!:number;
     parent!:string;
+    mother!:Categorie;
 
 }
