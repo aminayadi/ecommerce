@@ -1,7 +1,6 @@
 package com.ecommerce.category.service;
 
 import com.ecommerce.category.domain.Category;
-import com.ecommerce.category.domain.Fields;
 import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.service.dto.CategoryDTO;
 import com.ecommerce.category.service.dto.FieldsDTO;
@@ -47,7 +46,7 @@ public class CategoryService {
         
         category = categoryRepository.save(category);
       
-        fieldsService.saveList(lfields,category);
+        fieldsService.saveList(lfields, category);
         
         return categoryMapper.toDto(category);
     }

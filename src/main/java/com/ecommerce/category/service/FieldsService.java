@@ -45,6 +45,7 @@ public class FieldsService {
         return fieldsMapper.toDto(fields);
     }
 
+    
     /**
      * Save a list of fields.
      *
@@ -63,7 +64,8 @@ public class FieldsService {
         }
         
         return nbSaved;
-    }
+    }    
+    
     
     /**
      * Update a fields.

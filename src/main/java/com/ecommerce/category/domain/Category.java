@@ -1,8 +1,10 @@
 package com.ecommerce.category.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -35,6 +37,11 @@ public class Category implements Serializable {
 
     @Field("parent")
     private String parent;
+
+    @DBRef
+    @Field("mother")
+    @JsonIgnoreProperties(value = { "mother" }, allowSetters = true)
+    private Category mother;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -127,6 +134,19 @@ public class Category implements Serializable {
 
     public void setParent(String parent) {
         this.parent = parent;
+    }
+
+    public Category getMother() {
+        return this.mother;
+    }
+
+    public void setMother(Category category) {
+        this.mother = category;
+    }
+
+    public Category mother(Category category) {
+        this.setMother(category);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -33,6 +33,13 @@
   "name": "Category",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "category",
+      "relationshipName": "mother",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceClass"
 }

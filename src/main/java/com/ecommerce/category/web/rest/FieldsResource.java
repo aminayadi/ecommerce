@@ -61,9 +61,6 @@ public class FieldsResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId()))
             .body(result);
     }
-    
- 
-    
 
     /**
      * {@code PUT  /fields/:id} : Updates an existing fields.

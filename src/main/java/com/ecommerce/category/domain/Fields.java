@@ -1,6 +1,7 @@
 package com.ecommerce.category.domain;
 
 import com.ecommerce.category.domain.enumeration.etype;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
@@ -30,6 +31,7 @@ public class Fields implements Serializable {
 
     @DBRef
     @Field("category")
+    @JsonIgnoreProperties(value = { "mother" }, allowSetters = true)
     private Category category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
