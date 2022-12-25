@@ -13,7 +13,7 @@
                   </div>
                 </div>
                 <div>
-                  <select  formControlName="category" placeholder="select" >
+                  <select  formControlName="category" placeholder="select" (change)="fillFields($event)">
                     <option [ngValue]=""></option>
                     <option *ngFor="let catalog of categories" [ngValue]="catalog.name">{{catalog.name}}</option>
                   </select>

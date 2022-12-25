@@ -1,5 +1,5 @@
 export class Categorie {
-    id!:number;
+    id!:string;
     name!:string;
     idparent!:number;
     parent!:string;

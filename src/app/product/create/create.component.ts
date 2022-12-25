@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
+import { Fields } from 'src/app/model/fields';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 })
 export class CreateComponent implements OnInit {
   categories  : Categorie[] = [];
+  fields: Fields[] = [];
   productForm!: FormGroup;
 
   constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { 
@@ -34,6 +36,11 @@ export class CreateComponent implements OnInit {
       this.categories = data;
       console.log(data);
     });
+  }
+
+  fillFields(categ:Event){
+    console.log("Enter to fillFields ...... ",this.productForm.get('category'));
+
   }
 
   submit() {
