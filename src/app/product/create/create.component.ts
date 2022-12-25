@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
 import { Fields } from 'src/app/model/fields';
+import { Pfield } from 'src/app/model/pfield';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -40,6 +41,16 @@ export class CreateComponent implements OnInit {
 
   fillFields(categ:Event){
     console.log("Enter to fillFields ...... ",this.productForm.get('category'));
+    let _category=this.productForm.get('category');
+    let mother = _category!.value!;
+
+    while (mother!=null)
+    {
+      let _fields: Fields[] = mother!.fields;
+      this.fields.concat(_fields);
+      mother = mother!.mother!;
+    }
+    console.log("fields : ", this.fields);
 
   }
 

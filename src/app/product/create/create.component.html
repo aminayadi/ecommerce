@@ -15,10 +15,13 @@
                 <div>
                   <select  formControlName="category" placeholder="select" (change)="fillFields($event)">
                     <option [ngValue]=""></option>
-                    <option *ngFor="let catalog of categories" [ngValue]="catalog.name">{{catalog.name}}</option>
+                    <option *ngFor="let catalog of categories" [ngValue]="catalog">{{catalog.name}}</option>
                   </select>
                 </div>
 
+                <div *ngFor="let field of fields">
+                  <app-pfield ></app-pfield>
+                </div>
 
 
                 <div class="form-group">
