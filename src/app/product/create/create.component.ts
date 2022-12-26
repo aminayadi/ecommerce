@@ -11,9 +11,10 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  categories  : Categorie[] = [];
+  categories  :any =[];
   fields: Fields[] = [];
   productForm!: FormGroup;
+  _category!: any;
 
   constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { 
 
@@ -35,20 +36,30 @@ export class CreateComponent implements OnInit {
     console.log("Enter to get categories ...... ");
     this.categoriesService.getAll().subscribe((data) => {
       this.categories = data;
-      console.log(data);
+      console.log("this.categories : ......", this.categories);
     });
   }
 
   fillFields(categ:Event){
     console.log("Enter to fillFields ...... ",this.productForm.get('category'));
-    let _category=this.productForm.get('category');
-    let mother = _category!.value!;
+    this._category=this.productForm.get('category');
+    console.log("_category : ", this._category);
+    let mother = this._category!.value!;
+    console.log("mother : ", mother);
 
     while (mother!=null)
     {
-      let _fields: Fields[] = mother!.fields;
-      this.fields.concat(_fields);
+      let _fields=this.getFieldsofCategories(mother.id);//     : Fields[] = mother!.fields;
+      console.log("mother.id = ", mother.id, "_fields : ", _fields);
+      if (_fields != null)
+        {
+            this.fields = this.fields.concat(_fields);
+            console.log("fields : ", this.fields);
+        }
+
       mother = mother!.mother!;
+      
+      console.log("mother : ", mother);
     }
     console.log("fields : ", this.fields);
 
@@ -65,6 +76,20 @@ export class CreateComponent implements OnInit {
         console.log(err);
       }
     })*/
+  }
+
+  getFieldsofCategories(id: string):Fields[]{
+    console.log("this.categories: ", this.categories,"  this.categories.length ", this.categories.length);
+    for(let i=0; i< this.categories.length; i++)
+     
+    {
+      console.log("this._category[i].id : ", this.categories[i].id, " id = ", id);
+      if (this.categories[i].id == id)
+      {
+        return this.categories[i].fields;
+      }
+    }
+    return [];
   }
 
   hasError(controlName: string, errorProp: string) {
