@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Fields } from 'src/app/model/fields';
 
 import { Pfield } from 'src/app/model/pfield';
 
@@ -9,23 +10,29 @@ import { Pfield } from 'src/app/model/pfield';
   styleUrls: ['./pfield.component.css']
 })
 export class PfieldComponent implements OnInit {
-  productForm!: FormGroup;
-  @Input() pfield!: Pfield;
+  
+  _pfield: Pfield | null = null;
+  @Input() pfield: Fields| null = null;
+
 
 
   constructor(private _formBuilder: FormBuilder) { 
 
-    this.productForm = this._formBuilder.group({
-      name: this.pfield.name,
-      value: ''
 
-  });
-
-
+ 
 
   }
 
   ngOnInit(): void {
+    console.log("Enter to PFieldComponent ------------: ",this.pfield);
+    if (this.pfield != null) {
+      this._pfield = new Pfield();
+      this._pfield.name =  this.pfield.name ;
+      this._pfield.type = this.pfield.type ;
+      //    this._pfield = this.pfield;
+          console.log("Enter to PFieldComponent : ",this._pfield);
+        }
+
   }
 
 }

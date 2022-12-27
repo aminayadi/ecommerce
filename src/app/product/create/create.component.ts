@@ -61,7 +61,7 @@ export class CreateComponent implements OnInit {
       
       console.log("mother : ", mother);
     }
-    console.log("fields : ", this.fields);
+    console.log("END ------------- fields : ", this.fields);
 
   }
 

@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <form [formGroup]="productForm" >
-                    <div>
-                        <label name="name"></label>
-                    <input class="input form-control" formControlName="value" type="text"/>
+
+                    <div *ngIf="_pfield">
+                        <label >{{ _pfield.name }}</label>
+                    <input class="input form-control" formControlName="_pfield.value" type="text"/>
                     </div>
-                </form>
+
             </div>
         </div>
     </div>
