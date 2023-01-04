@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20230102091515",
+  "clientRootFolder": "chatmanagerdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "from",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fromUserName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "microserviceName": "chatmanagerdb",
+  "name": "Msg",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
