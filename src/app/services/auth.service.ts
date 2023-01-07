@@ -15,14 +15,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post('http://192.168.1.172:8080/api/authenticate', {
+    return this.http.post('http://localhost:8080/api/authenticate', {
       'username' : username,
       'password' : password
     }, httpOptions);
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post('http://192.168.1.172:8080/api/register', {
+    return this.http.post('http://localhost:8080/api/register', {
       'login' : username,
       'email' : email,
       'password' : password

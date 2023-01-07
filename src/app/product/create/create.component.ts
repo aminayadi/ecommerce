@@ -15,12 +15,14 @@ export class CreateComponent implements OnInit {
   fields: Fields[] = [];
   productForm!: FormGroup;
   _category!: any;
+  mother:Categorie | undefined;
 
   constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { 
 
     this.productForm = this._formBuilder.group({
       name: ['', Validators.required],
       category: ['', Validators.required],
+      fields:['']
 
   });
 
@@ -40,12 +42,28 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  getCategoryById(idCateg:any)
+  {
+    let res:Categorie;
+    console.log("getCategoryById ++++++++++ this.categories : ......", this.categories);
+    for (let i=0; i< this.categories.length; i++){
+
+      console.log("categ .........hello : ", this.categories[i]);
+      if (this.categories[i].id == idCateg)
+      {
+        return this.categories[i];
+      }      
+    }
+    return null ; 
+  }
+
   fillFields(categ:Event){
+    this.fields=[];
     console.log("Enter to fillFields ...... ",this.productForm.get('category'));
     this._category=this.productForm.get('category');
     console.log("_category : ", this._category);
     let mother = this._category!.value!;
-    console.log("mother : ", mother);
+    console.log("current mother .......................: ", mother);
 
     while (mother!=null)
     {
@@ -57,11 +75,12 @@ export class CreateComponent implements OnInit {
             console.log("fields : ", this.fields);
         }
 
-      mother = mother!.mother!;
+        //get mother category from this.categories function to add  
+      mother = this.getCategoryById(mother!.mother!.id);// mother!.mother!;
       
-      console.log("mother : ", mother);
+      console.log(" New mother : ..............................", mother);
     }
-    console.log("END ------------- fields : ", this.fields);
+    console.log("END ------------- fieldçs : ", this.fields);
 
   }
 

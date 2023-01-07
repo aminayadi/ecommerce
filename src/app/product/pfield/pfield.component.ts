@@ -14,10 +14,13 @@ export class PfieldComponent implements OnInit {
   _pfield: Pfield | null = null;
   @Input() pfield: Fields| null = null;
 
-
+  pfieldForm!: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) { 
+    this.pfieldForm = this._formBuilder.group({
+      value: ''
 
+  });
 
  
 

@@ -1,11 +1,11 @@
 <div class="account-area mt-70 mb-70">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6" [formGroup]="pfieldForm">
 
                     <div *ngIf="_pfield">
                         <label >{{ _pfield.name }}</label>
-                    <input class="input form-control" formControlName="_pfield.value" type="text"/>
+                    <input class="input form-control" formControlName="value" type="text"/>
                     </div>
 
             </div>
