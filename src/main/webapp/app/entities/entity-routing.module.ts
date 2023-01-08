@@ -44,6 +44,16 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Fields' },
         loadChildren: () => import('./categorydb/fields/fields.module').then(m => m.CategorydbFieldsModule),
       },
+      {
+        path: 'pfield',
+        data: { pageTitle: 'Pfields' },
+        loadChildren: () => import('./productdb/pfield/pfield.module').then(m => m.ProductdbPfieldModule),
+      },
+      {
+        path: 'msg',
+        data: { pageTitle: 'Msgs' },
+        loadChildren: () => import('./chatmanagerdb/msg/msg.module').then(m => m.ChatmanagerdbMsgModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

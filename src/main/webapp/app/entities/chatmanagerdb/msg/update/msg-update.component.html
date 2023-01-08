@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-msg-heading" data-cy="MsgCreateUpdateHeading">Create or edit a Msg</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_from">From</label>
+          <input type="text" class="form-control" name="from" id="field_from" data-cy="from" formControlName="from" />
+          <div *ngIf="editForm.get('from')!.invalid && (editForm.get('from')!.dirty || editForm.get('from')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('from')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_fromUserName">From User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fromUserName"
+            id="field_fromUserName"
+            data-cy="fromUserName"
+            formControlName="fromUserName"
+          />
+          <div
+            *ngIf="editForm.get('fromUserName')!.invalid && (editForm.get('fromUserName')!.dirty || editForm.get('fromUserName')!.touched)"
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('fromUserName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_message">Message</label>
+          <input type="text" class="form-control" name="message" id="field_message" data-cy="message" formControlName="message" />
+          <div *ngIf="editForm.get('message')!.invalid && (editForm.get('message')!.dirty || editForm.get('message')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('message')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

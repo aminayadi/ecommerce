@@ -19,7 +19,7 @@
     "enableHibernateCache": false,
     "enableSwaggerCodegen": false,
     "enableTranslation": false,
-    "entities": ["Category", "Client", "Product", "Message", "Favoris", "Request", "Research", "Fields"],
+    "entities": ["Category", "Client", "Product", "Message", "Favoris", "Request", "Research", "Fields", "Pfield", "Msg"],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",

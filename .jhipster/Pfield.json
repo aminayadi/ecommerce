@@ -1,0 +1,38 @@
+{
+  "changelogDate": "20221225134139",
+  "clientRootFolder": "productdb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "etype",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "STRING,NUMBER,DATE"
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    }
+  ],
+  "microserviceName": "productdb",
+  "microservicePath": "../product",
+  "name": "Pfield",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "product",
+      "relationshipName": "product",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceClass"
+}
