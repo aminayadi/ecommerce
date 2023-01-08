@@ -22,18 +22,18 @@ export class ChatStreamComponent implements OnChanges {
   publishedMessage: Message[] = new Array();
   showTypingIndicator: boolean = false;
   typingUser: string;
-  loggedinUserId: number;
+  loggedinUserId: string;
 
   constructor(private appDataService: AppDataService,
               private websocketService: WebSocketService) {
-    this.loggedinUserId = this.appDataService.userId;
+    this.loggedinUserId = this.appDataService.id;
   }
 
   sendTypeIndicator() {
     let message: Message = {
       type: 'TYPING',
-      from: this.appDataService.userId,
-      fromUserName: this.appDataService.userName,
+      from: this.appDataService.id,
+      fromUserName: this.appDataService.fname,
       message: null
     }
     this.outputMessage.emit(JSON.stringify(message));
@@ -45,8 +45,8 @@ export class ChatStreamComponent implements OnChanges {
 
     let message: Message = {
       type: 'MESSAGE',
-      from: this.appDataService.userId,
-      fromUserName: this.appDataService.userName,
+      from: this.appDataService.id,
+      fromUserName: this.appDataService.fname,
       message: msg
     }
     this.outputMessage.emit(JSON.stringify(message));
@@ -69,6 +69,7 @@ export class ChatStreamComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const chng = changes['inputMessage'];
+    if(chng.currentValue!=""){
     let message: Message = JSON.parse(chng.currentValue);
     if (message.type == 'MESSAGE') {
       this.publishedMessage.push(message);
@@ -77,6 +78,7 @@ export class ChatStreamComponent implements OnChanges {
         this.showUserTypingIndicator(message.fromUserName);
       }
     }
+  }
   }
 
 }

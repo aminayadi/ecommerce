@@ -5,14 +5,14 @@ import {LocalStorage} from 'ngx-webstorage';
 export class AppDataService {
   
   @LocalStorage()
-  public userId: number;
+  public id: string;
 
   @LocalStorage()
-  public userName: string;
+  public fname: string;
 
   public clearData(){
-    this.userId = null;
-    this.userName = null;
+    this.id = null;
+    this.fname = null;
   }
 
 }

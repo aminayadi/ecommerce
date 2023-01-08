@@ -19,8 +19,8 @@ export class LoginComponent {
   doLogin() {
     this.appService.userLogin({name: this.userName})
         .subscribe(response => {
-          this.appDataService.userId = response.id;
-          this.appDataService.userName = response.userName;
+          this.appDataService.id = response.id;
+          this.appDataService.fname = response.userName;
           this.router.navigate(['/chat']);
         });
   }

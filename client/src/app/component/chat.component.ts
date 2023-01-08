@@ -17,13 +17,13 @@ export class ChatComponent {
 
   constructor(private appDataService: AppDataService,
     private websocketService: WebSocketService) {
-    this.loggedInUser = appDataService.userName;
+    this.loggedInUser = appDataService.fname;
     this.websocket = this.websocketService.createNew();
     this.websocket.onopen = (event: MessageEvent) => {
       let message: Message = {
         type: 'JOINED',
-        from: this.appDataService.userId,
-        fromUserName: this.appDataService.userName,
+        from: this.appDataService.id,
+        fromUserName: this.appDataService.fname,
         message: null
       }
       this.websocket.send(JSON.stringify(message));
@@ -54,8 +54,8 @@ export class ChatComponent {
   close() {
     let message: Message = {
       type: 'LEFT',
-      from: this.appDataService.userId,
-      fromUserName: this.appDataService.userName,
+      from: this.appDataService.id,
+      fromUserName: this.appDataService.fname,
       message: null
     }
     this.websocket.send(JSON.stringify(message));

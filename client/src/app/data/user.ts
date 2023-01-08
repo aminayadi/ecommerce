@@ -1,5 +1,5 @@
 export interface User {
-  id: Number,
-  userName: String,
+  id: string,
+  fname: String,
   isOnline: Boolean
 }

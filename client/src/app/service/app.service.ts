@@ -8,10 +8,10 @@ export class AppService {
   constructor(private xhrhandler: XHRHandler) {}
 
   userLogin(request: LoginRequest): Observable<any> {
-    return this.xhrhandler.doPost('user/login', request);
+    return this.xhrhandler.doPost('api/hetuser', request);
   }
 
   listUser(): Observable<any> {
-    return this.xhrhandler.doGet('user/list');
+    return this.xhrhandler.doGet('api/hetusers');
   }
 }
