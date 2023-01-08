@@ -42,6 +42,8 @@ public class CategoryService {
     public CategoryDTO save(CategoryDTO categoryDTO) {
         log.debug("Request to save Category : {}", categoryDTO);
         Category category = categoryMapper.toEntity(categoryDTO);
+        category.setParent(category.getMother().getName());
+
         List<FieldsDTO> lfields = categoryDTO.getFields();
         
         category = categoryRepository.save(category);
