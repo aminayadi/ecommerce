@@ -7,20 +7,27 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PfieldComponent } from './pfield/pfield.component';
+import { UploadImagesComponent } from './upload-images/upload-images.component';
+
 
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    CreateComponent,
-    EditComponent,
-    PfieldComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        HomeComponent,
+        CreateComponent,
+        EditComponent,
+        PfieldComponent,
+        UploadImagesComponent
+    ],
+    imports: [
+        CommonModule,
+        ProductRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+     
+    ],
+    exports:[
+      CreateComponent
+    ]
 })
 export class ProductModule { }

@@ -28,7 +28,9 @@ import { ProductModule } from './product/product.module';
     ProductsComponent,
     AccountComponent,
     HomeComponent,
-    FooderComponent
+    FooderComponent,
+ 
+   
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,8 @@ import { ProductModule } from './product/product.module';
     CategoryModule,
     ProductModule
   ],
+  
+
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

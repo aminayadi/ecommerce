@@ -22,7 +22,12 @@
                 <div *ngFor="let field of fields">
                   <app-pfield [pfield]="field"></app-pfield>
                 </div>
+              
 
+               <!--JN Adding upload images-->
+
+               
+              <app-upload-images></app-upload-images>
 
                 <!--div class="form-group"-->
                   <button class="button tp-in-btn w-100"  type="button" (click)="submit()" >Save</button>
