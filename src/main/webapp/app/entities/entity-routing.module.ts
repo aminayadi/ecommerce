@@ -54,6 +54,21 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Msgs' },
         loadChildren: () => import('./chatmanagerdb/msg/msg.module').then(m => m.ChatmanagerdbMsgModule),
       },
+      {
+        path: 'photo',
+        data: { pageTitle: 'Photos' },
+        loadChildren: () => import('./productdb/photo/photo.module').then(m => m.ProductdbPhotoModule),
+      },
+      {
+        path: 'folder',
+        data: { pageTitle: 'Folders' },
+        loadChildren: () => import('./photodb/folder/folder.module').then(m => m.PhotodbFolderModule),
+      },
+      {
+        path: 'file',
+        data: { pageTitle: 'Files' },
+        loadChildren: () => import('./photodb/file/file.module').then(m => m.PhotodbFileModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

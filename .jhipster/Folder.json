@@ -1,0 +1,20 @@
+{
+  "changelogDate": "20230111083444",
+  "clientRootFolder": "photodb",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "microserviceName": "photodb",
+  "microservicePath": "../photomanager",
+  "name": "Folder",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}
