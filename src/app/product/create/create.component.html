@@ -12,6 +12,29 @@
                     </div>
                   </div>
                 </div>
+
+                <div>
+                  <input class="input form-control" formControlName="description" type="text" placeholder="Enter product description..."/>
+                  <div *ngIf="canShowError('description')">
+                    <div class="error" *ngIf="hasError('description', 'required')">
+                      product description is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <input class="input form-control" formControlName="zone" type="text" placeholder="Enter product zone..."/>
+                  <div *ngIf="canShowError('zone')">
+                    <div class="error" *ngIf="hasError('zone', 'required')">
+                      product zone is required.
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
                 <div>
                   <select  formControlName="category" placeholder="select" (change)="fillFields($event)">
                     <option [ngValue]=""></option>

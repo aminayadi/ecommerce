@@ -4,6 +4,9 @@ import { Categorie } from 'src/app/model/categorie';
 import { Fields } from 'src/app/model/fields';
 import { Pfield } from 'src/app/model/pfield';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { ProductsService } from 'src/app/services/products.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+
 
 @Component({
   selector: 'app-create',
@@ -17,12 +20,22 @@ export class CreateComponent implements OnInit {
   _category!: any;
   mother:Categorie | undefined;
 
-  constructor(private categoriesService:CategoriesService,private _formBuilder: FormBuilder) { 
+
+  private roles: string[] = [];
+  isLoggedIn = false;
+  username?: string;
+
+  constructor(private categoriesService:CategoriesService,
+    private _formBuilder: FormBuilder,
+    private productsService: ProductsService,
+    private tokenStorageService: TokenStorageService) { 
 
     this.productForm = this._formBuilder.group({
       name: ['', Validators.required],
+      description: ['', Validators.required],
+      zone: ['', Validators.required],
       category: ['', Validators.required],
-      fields:['']
+      fields:[]
 
   });
 
@@ -31,6 +44,21 @@ export class CreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log("Token : ", this.tokenStorageService.getToken()?.toString());
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+  
+      this.username = user.username;
+
+      console.log("User : ", user, " ROLES : ", this.roles);
+    }
+
+
+
     this.getCategories();
   }
 
@@ -86,7 +114,7 @@ export class CreateComponent implements OnInit {
 
   submit() {
     console.log(this.productForm.value);
-  /*  this.categoriesService.create(this.categoryForm.value)
+    this.productsService.create(this.productForm.value)
     .subscribe({
       next:(data) => {
         console.log("success .....");
@@ -94,7 +122,7 @@ export class CreateComponent implements OnInit {
       error:(err) => {
         console.log(err);
       }
-    })*/
+    })
   }
 
   getFieldsofCategories(id: string):Fields[]{

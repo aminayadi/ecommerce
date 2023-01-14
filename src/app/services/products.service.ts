@@ -13,4 +13,9 @@ export class ProductsService {
     //return this.http.get<Product[]>("http://localhost:8080/services/categorydb/api/products");
     return this.http.get<Product[]>("http://localhost:8085/api/products");
   }
+
+  create(payload: Product) {
+    return this.http.post<Product>('http://localhost:8080/services/productdb/api/products', payload);
+  }
+
 }

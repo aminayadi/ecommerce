@@ -75,13 +75,14 @@ export class AccountComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
+        console.log("data : ", data); 
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+       // this.reloadPage();
       },
       error: err => {
         this.errorMessage = err.error.message;
