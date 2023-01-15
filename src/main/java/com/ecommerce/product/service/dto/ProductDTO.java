@@ -3,6 +3,7 @@ package com.ecommerce.product.service.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,8 +30,8 @@ public class ProductDTO implements Serializable {
     private LocalDate createdat;
 
     private LocalDate updatedat;
-    private CategoryDTO categoryDTO;
-    private ClientDTO clientDTO;
+    
+    private List<PfieldDTO> fields;
 
     public String getId() {
         return id;
@@ -39,26 +40,8 @@ public class ProductDTO implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
-    
 
-    public CategoryDTO getCategoryDTO() {
-		return categoryDTO;
-	}
-
-	public void setCategoryDTO(CategoryDTO categoryDTO) {
-		this.categoryDTO = categoryDTO;
-	}
-
-	public ClientDTO getClientDTO() {
-		return clientDTO;
-	}
-
-	public void setClientDTO(ClientDTO clientDTO) {
-		this.clientDTO = clientDTO;
-	}
-
-	public String getIdcategory() {
+    public String getIdcategory() {
         return idcategory;
     }
 
@@ -130,7 +113,15 @@ public class ProductDTO implements Serializable {
         this.updatedat = updatedat;
     }
 
-    @Override
+    public List<PfieldDTO> getFields() {
+		return fields;
+	}
+
+	public void setFields(List<PfieldDTO> fields) {
+		this.fields = fields;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -155,10 +146,9 @@ public class ProductDTO implements Serializable {
 	public String toString() {
 		return "ProductDTO [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name
 				+ ", photo=" + Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description="
-				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat
-				+ ", categoryDTO=" + categoryDTO + ", clientDTO=" + clientDTO + "]";
+				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", fields="
+				+ fields + "]";
 	}
 
-  
-    
+
 }
