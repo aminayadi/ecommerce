@@ -31,7 +31,7 @@ public class ProductDTO implements Serializable {
 
     private LocalDate updatedat;
     
-    private List<PfieldDTO> fields;
+    private List<PfieldDTO> pfields;
 
     public String getId() {
         return id;
@@ -113,12 +113,12 @@ public class ProductDTO implements Serializable {
         this.updatedat = updatedat;
     }
 
-    public List<PfieldDTO> getFields() {
-		return fields;
+    public List<PfieldDTO> getPfields() {
+		return pfields;
 	}
 
-	public void setFields(List<PfieldDTO> fields) {
-		this.fields = fields;
+	public void setPfields(List<PfieldDTO> fields) {
+		this.pfields = fields;
 	}
 
 	@Override
@@ -146,8 +146,8 @@ public class ProductDTO implements Serializable {
 	public String toString() {
 		return "ProductDTO [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name
 				+ ", photo=" + Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description="
-				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", fields="
-				+ fields + "]";
+				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", pfields="
+				+ pfields + "]";
 	}
 
 

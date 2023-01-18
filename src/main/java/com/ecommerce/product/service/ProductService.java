@@ -40,7 +40,7 @@ public class ProductService {
         Product product = productMapper.toEntity(productDTO);
         product = productRepository.save(product);
         
-        for(int i=0; i<productDTO.getFields().size(); i++) {
+        for(int i=0; i<productDTO.getPfields().size(); i++) {
         	
         }
         
