@@ -42,10 +42,19 @@
                   </select>
                 </div>
 
-                <div *ngFor="let field of fields">
-                  <app-pfield [pfield]="field"></app-pfield>
-                </div>
               
+                <ng-container formArrayName="pfields">
+                  <ng-container *ngFor="let pfieldForm of pfields.controls; let i = index">
+                      <div [formGroupName]="i">
+                        <input id="value" type="text" formControlName="name" [readonly]="true"/> <br>
+                          <input id="value" type="text" formControlName="value" />                
+                      </div>
+                  </ng-container>
+              </ng-container>
+
+
+
+
 
                <!--JN Adding upload images-->
 

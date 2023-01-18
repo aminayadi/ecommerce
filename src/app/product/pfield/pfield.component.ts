@@ -18,6 +18,7 @@ export class PfieldComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) { 
     this.pfieldForm = this._formBuilder.group({
+      name:'',
       value: ''
 
   });

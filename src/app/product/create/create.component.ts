@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
 import { Fields } from 'src/app/model/fields';
 import { Pfield } from 'src/app/model/pfield';
@@ -17,8 +17,10 @@ export class CreateComponent implements OnInit {
   categories  :any =[];
   fields: Fields[] = [];
   productForm!: FormGroup;
+  pfieldForm!: FormGroup;
   _category!: any;
   mother:Categorie | undefined;
+
 
 
   private roles: string[] = [];
@@ -35,29 +37,34 @@ export class CreateComponent implements OnInit {
       description: ['', Validators.required],
       zone: ['', Validators.required],
       category: ['', Validators.required],
-      fields:[]
+      pfields:this._formBuilder.array([])
 
   });
 
 
 
+
   }
 
+  get pfields() {
+    return this.productForm.controls["pfields"] as FormArray;
+  }
+
+
+  addNewPfields(name:string){
+    this.pfieldForm = this._formBuilder.group({
+      name: new FormControl(''),
+      value: new FormControl(''),
+    });
+    this.pfieldForm.get("name")?.setValue(name);
+    this.pfieldForm.get("value")?.setValue("");
+    this.pfields.push(this.pfieldForm);
+  }
+
+
+
+
   ngOnInit(): void {
-
-    console.log("Token : ", this.tokenStorageService.getToken()?.toString());
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-  
-      this.username = user.username;
-
-      console.log("User : ", user, " ROLES : ", this.roles);
-    }
-
-
 
     this.getCategories();
   }
@@ -87,33 +94,46 @@ export class CreateComponent implements OnInit {
 
   fillFields(categ:Event){
     this.fields=[];
-    console.log("Enter to fillFields ...... ",this.productForm.get('category'));
     this._category=this.productForm.get('category');
     console.log("_category : ", this._category);
     let mother = this._category!.value!;
-    console.log("current mother .......................: ", mother);
+
 
     while (mother!=null)
     {
       let _fields=this.getFieldsofCategories(mother.id);//     : Fields[] = mother!.fields;
-      console.log("mother.id = ", mother.id, "_fields : ", _fields);
       if (_fields != null)
         {
             this.fields = this.fields.concat(_fields);
             console.log("fields : ", this.fields);
+            
         }
 
         //get mother category from this.categories function to add  
-      mother = this.getCategoryById(mother!.mother!.id);// mother!.mother!;
+      if(mother!.mother)
+        mother = this.getCategoryById(mother!.mother!.id);// mother!.mother!;
+      else
+        mother = null; 
       
-      console.log(" New mother : ..............................", mother);
     }
     console.log("END ------------- fieldçs : ", this.fields);
+    this.pfields.clear();
+    console.log("PFIELDS ------------- CLEARED : ", this.pfields);
+
+    for(let i=0; i<this.fields.length;i++)
+    {
+      this.addNewPfields(this.fields[i].name);
+  
+      console.log("PFIELDS ------------- PFIELDS : ", this.pfields);
+    }
+    
 
   }
 
   submit() {
     console.log(this.productForm.value);
+   // console.log(this.productForm.value.pfields[0]);
+    
     this.productsService.create(this.productForm.value)
     .subscribe({
       next:(data) => {
