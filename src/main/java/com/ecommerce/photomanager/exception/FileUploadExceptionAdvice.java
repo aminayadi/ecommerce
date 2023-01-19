@@ -1,6 +1,6 @@
 package com.ecommerce.photomanager.exception;
 
-import com.bezkoder.spring.files.uploadmultiple.message.ResponseMessage;
+import com.ecommerce.photomanager.message.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
