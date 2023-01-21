@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Categorie } from 'src/app/model/categorie';
 import { Fields } from 'src/app/model/fields';
 import { Pfield } from 'src/app/model/pfield';
+import { Photo } from 'src/app/model/photo';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
@@ -15,8 +17,10 @@ import { UploadImagesComponent } from '../upload-images/upload-images.component'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  @ViewChild('child')
-  child!: UploadImagesComponent;
+  imageInfos?: Observable<any>;
+
+  @ViewChild(UploadImagesComponent) pup!: UploadImagesComponent;
+
   
   categories  :any =[];
   fields: Fields[] = [];
@@ -24,8 +28,6 @@ export class CreateComponent implements OnInit {
   pfieldForm!: FormGroup;
   _category!: any;
   mother:Categorie | undefined;
-
-
 
   private roles: string[] = [];
   isLoggedIn = false;
@@ -41,8 +43,9 @@ export class CreateComponent implements OnInit {
       description: ['', Validators.required],
       zone: ['', Validators.required],
       category: ['', Validators.required],
-      pfields:this._formBuilder.array([])
-
+      pfields:this._formBuilder.array([]),
+      lphotos:[]
+ 
   });
 
 
@@ -53,6 +56,7 @@ export class CreateComponent implements OnInit {
   get pfields() {
     return this.productForm.controls["pfields"] as FormArray;
   }
+
 
 
   addNewPfields(name:string){
@@ -134,11 +138,30 @@ export class CreateComponent implements OnInit {
 
   }
 
-  submit() {
-    console.log(this.productForm.value);
-    console.log(this.child.imageInfos);
-   // console.log(this.productForm.value.pfields[0]);
+   submit() {
+    let lphotos:Photo[] = [];
+   
+  this.pup.imageInfos!.forEach((element) => 
+    {
+      console.log("FROM CREATE FORM : -----------",element);
+      let p:Photo={
+        id: '',
+        path: element.url,
+        name: element.name,
+        type: ''
+      }
+      lphotos.push(p);
+    }
+    );
+
+
+
     
+    this.productForm.controls['lphotos'].setValue(lphotos);
+    console.log("LAST MOMENT :) ", this.productForm.value);
+    
+
+
     this.productsService.create(this.productForm.value)
     .subscribe({
       next:(data) => {

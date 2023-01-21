@@ -57,6 +57,7 @@ export class UploadImagesComponent implements OnInit {
             const msg = 'Uploaded the file successfully: ' + file.name;
             this.message.push(msg);
             this.imageInfos = this.uploadService.getFiles();
+            this.imageInfos.forEach(element => console.log("element : -----------",element) );
           }
         },
         error: (err: any) => {
