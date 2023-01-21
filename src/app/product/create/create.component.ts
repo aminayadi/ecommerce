@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
 import { Fields } from 'src/app/model/fields';
@@ -6,6 +6,7 @@ import { Pfield } from 'src/app/model/pfield';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { UploadImagesComponent } from '../upload-images/upload-images.component';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
+  @ViewChild('child')
+  child!: UploadImagesComponent;
+  
   categories  :any =[];
   fields: Fields[] = [];
   productForm!: FormGroup;
@@ -132,6 +136,7 @@ export class CreateComponent implements OnInit {
 
   submit() {
     console.log(this.productForm.value);
+    console.log(this.child.imageInfos);
    // console.log(this.productForm.value.pfields[0]);
     
     this.productsService.create(this.productForm.value)

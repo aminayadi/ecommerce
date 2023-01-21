@@ -1,0 +1,19 @@
+
+<div class="container">
+    <legend>Edit Item</legend>
+    <form>
+      <div class="mb-3">
+        <label for="txtName" class="form-label">ID</label>
+        <input type="text" name="name" [(ngModel)] = "categoryForm.id" class="form-control" id="txtName" disabled="true"/>
+      </div>
+      <div class="mb-3">
+        <label for="txtPrice" class="form-label">Name</label>
+        <input type="text" name="price" [(ngModel)] = "categoryForm.name" class="form-control" id="txtPrice" />
+      </div>
+      <div class="mb-3">
+        <label for="txtQuantity" class="form-label">Mother</label>
+        <input type="text" name="quantity" [(ngModel)] = "categoryForm.parent" class="form-control" id="txtQuantity" />
+      </div>
+      <button type="button" (click)="update()" class="btn btn-primary">Update</button>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">categories management</a>
+          <a class="btn btn-primary" routerLink="/category/create">new category</a>
+        </div>
+      </nav>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Mother</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categorie of allcategories">
+            <td scope="row">{{categorie.id}}</td>
+            <td>{{categorie.name}}</td>
+            <td>{{categorie.parent}}</td>
+            <td>
+            <a class="btn btn-primary"  [routerLink]="['/edit', categorie.id]" > Edit </a> |
+            <button type="button" (click)="openDeleteModal(categorie.id)" class="btn btn-danger">Delete</button>
+      
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete the item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="delete()">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

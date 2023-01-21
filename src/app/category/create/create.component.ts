@@ -3,6 +3,7 @@ import { FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@ang
 import { Categorie } from 'src/app/model/categorie';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { FieldsService } from '../fields.service';
+import {  ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -15,6 +16,8 @@ export class CreateComponent implements OnInit {
   fields!: FormArray
 
   constructor(
+    private route: ActivatedRoute,
+    private router:Router,
     private categoriesService:CategoriesService,
     private _fieldsService: FieldsService,
     private _formBuilder: FormBuilder) {
@@ -69,6 +72,7 @@ export class CreateComponent implements OnInit {
     .subscribe({
       next:(data) => {
         console.log("success .....");
+        this.router.navigate(["/category/list"]);
       },
       error:(err) => {
         console.log(err);

@@ -1,3 +1,5 @@
+import { Photo } from "./photo";
+
 export class Product {
     id!:string;
     idcategory!:string;
@@ -7,6 +9,8 @@ export class Product {
     photo_content_type!:string;
     description!:string;
     zone!:string;
+    lphotos!:Photo[];
+    
 
 }
 

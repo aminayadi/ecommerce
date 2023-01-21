@@ -19,20 +19,5 @@ export class CategoriesService {
   }
 
 
-  getById(id: String) {
-    return this.http.get<Categorie>(`http://localhost:8081/api/categories/${id}`);
-   }
-    
-   update(payload:Categorie){
-    return this.http.put(`http://localhost:8081/api/categories/${payload.id}`,payload);
-   }
-
-
-
-  delete(id:String){
-    return this.http.delete<Categorie>(`http://localhost:8081/api/categories/${id}`);
- }
-
-
 
 }
