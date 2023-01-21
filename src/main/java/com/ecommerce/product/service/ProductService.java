@@ -7,6 +7,7 @@ import com.ecommerce.product.domain.enumeration.etype;
 import com.ecommerce.product.repository.PfieldRepository;
 import com.ecommerce.product.repository.PhotoRepository;
 import com.ecommerce.product.repository.ProductRepository;
+import com.ecommerce.product.security.SecurityUtils;
 import com.ecommerce.product.service.dto.PfieldDTO;
 import com.ecommerce.product.service.dto.PhotoDTO;
 import com.ecommerce.product.service.dto.ProductDTO;
@@ -65,6 +66,17 @@ public class ProductService {
      */
     public ProductDTO save(ProductDTO productDTO) {
         log.debug("Request to save Product : {}", productDTO);
+        
+        //Set UserID
+        try {
+            String idUser = SecurityUtils.getCurrentUserLogin().get();
+            productDTO.setIduser(idUser);
+            log.debug("idUser : ", idUser);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         Product product = productMapper.toEntity(productDTO);
         product = productRepository.save(product);
         
