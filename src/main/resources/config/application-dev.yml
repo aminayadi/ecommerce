@@ -67,7 +67,10 @@ spring:
     locator:
       discovery:
         enabled: true
-
+  servlet:
+    multipart:
+      max-file-size: 5000000KB
+      max-request-size: 5000000KB
 server:
   port: 8091
 
