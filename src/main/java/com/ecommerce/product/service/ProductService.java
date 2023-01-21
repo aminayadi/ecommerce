@@ -1,13 +1,17 @@
 package com.ecommerce.product.service;
 
 import com.ecommerce.product.domain.Pfield;
+import com.ecommerce.product.domain.Photo;
 import com.ecommerce.product.domain.Product;
 import com.ecommerce.product.domain.enumeration.etype;
 import com.ecommerce.product.repository.PfieldRepository;
+import com.ecommerce.product.repository.PhotoRepository;
 import com.ecommerce.product.repository.ProductRepository;
 import com.ecommerce.product.service.dto.PfieldDTO;
+import com.ecommerce.product.service.dto.PhotoDTO;
 import com.ecommerce.product.service.dto.ProductDTO;
 import com.ecommerce.product.service.mapper.PfieldMapper;
+import com.ecommerce.product.service.mapper.PhotoMapper;
 import com.ecommerce.product.service.mapper.ProductMapper;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,16 +37,24 @@ public class ProductService {
 
     private final PfieldMapper pfieldMapper;    
     
+    private final PhotoRepository photoRepository;
+
+    private final PhotoMapper photoMapper;      
+    
     public ProductService(
     		ProductRepository productRepository, 
     		ProductMapper productMapper,
     		PfieldRepository pfieldRepository,
-    		PfieldMapper pfieldMapper	
+    		PfieldMapper pfieldMapper,
+    		PhotoRepository photoRepository,
+    		PhotoMapper photoMapper    		
     	) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.pfieldRepository = pfieldRepository;
-        this.pfieldMapper = pfieldMapper;        
+        this.pfieldMapper = pfieldMapper;  
+        this.photoRepository = photoRepository;
+        this.photoMapper = photoMapper;          
     }
 
     /**
@@ -65,8 +77,19 @@ public class ProductService {
             pfield = pfieldRepository.save(pfield);        	
         	
         }
-        
+
         ProductDTO pMtoDTO = productMapper.toDto(product) ;
+        
+        for(int i=0; i<productDTO.getLphotos().size(); i++) {
+        	
+        	PhotoDTO photoDTO = productDTO.getLphotos().get(i);
+        	photoDTO.setProduct(pMtoDTO);
+       
+            Photo photo = photoMapper.toEntity(photoDTO);
+            photo = photoRepository.save(photo);        	
+        	
+        }        
+        
         return pMtoDTO;
     }
 

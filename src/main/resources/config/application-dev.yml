@@ -67,7 +67,10 @@ spring:
     locator:
       discovery:
         enabled: true
-
+  servlet:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
 server:
   port: 8085
 
@@ -118,3 +121,4 @@ jhipster:
 # ===================================================================
 
 # application:
+

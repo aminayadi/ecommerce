@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.ecommerce.product.domain.Photo;
+
 /**
  * A DTO for the {@link com.ecommerce.product.domain.Product} entity.
  */
@@ -32,6 +34,8 @@ public class ProductDTO implements Serializable {
     private LocalDate updatedat;
     
     private List<PfieldDTO> pfields;
+    
+    private List<PhotoDTO> lphotos;
 
     public String getId() {
         return id;
@@ -121,6 +125,15 @@ public class ProductDTO implements Serializable {
 		this.pfields = fields;
 	}
 
+	
+	public List<PhotoDTO> getLphotos() {
+		return lphotos;
+	}
+
+	public void setLphotos(List<PhotoDTO> lphotos) {
+		this.lphotos = lphotos;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -146,9 +159,11 @@ public class ProductDTO implements Serializable {
 	public String toString() {
 		return "ProductDTO [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name
 				+ ", photo=" + Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description="
-				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", pfields="
-				+ pfields + "]";
+				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat
+				+ ", pfields=" + pfields + ", lphotos=" + lphotos + "]";
 	}
+
+
 
 
 }
