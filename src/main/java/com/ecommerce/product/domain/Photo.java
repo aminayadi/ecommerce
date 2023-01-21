@@ -18,6 +18,10 @@ public class Photo implements Serializable {
 
     @Id
     private String id;
+    
+    @NotNull
+    @Field("name")
+    private String name;    
 
     @NotNull
     @Field("path")
@@ -84,9 +88,20 @@ public class Photo implements Serializable {
         return this;
     }
 
+    
+    
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
-    @Override
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -103,13 +118,11 @@ public class Photo implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Photo{" +
-            "id=" + getId() +
-            ", path='" + getPath() + "'" +
-            ", type='" + getType() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "Photo [id=" + id + ", name=" + name + ", path=" + path + ", type=" + type + ", product=" + product
+				+ "]";
+	}
+
+
 }

@@ -11,6 +11,9 @@ import javax.validation.constraints.*;
 public class PhotoDTO implements Serializable {
 
     private String id;
+    
+    @NotNull
+    private String name;    
 
     @NotNull
     private String path;
@@ -51,7 +54,18 @@ public class PhotoDTO implements Serializable {
         this.product = product;
     }
 
-    @Override
+    
+    
+    
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -72,14 +86,11 @@ public class PhotoDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "PhotoDTO{" +
-            "id='" + getId() + "'" +
-            ", path='" + getPath() + "'" +
-            ", type='" + getType() + "'" +
-            ", product=" + getProduct() +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "PhotoDTO [id=" + id + ", name=" + name + ", path=" + path + ", type=" + type + ", product=" + product
+				+ "]";
+	}
+
+
 }
