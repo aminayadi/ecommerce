@@ -10,14 +10,14 @@ import { Observable } from 'rxjs';
 
 export class FileUploadService {
 
-  private baseUrl = 'http://localhost:8091/api/fmanager';
-
+  //private baseUrl = 'http://localhost:8091/api/fmanager';
+  private baseUrl = 'http://localhost:8080/services/photodb/api/fmanager';
   constructor(private http: HttpClient) { }
 
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
-    formData.append('file', file);
+    formData.append('files', file);
 
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
       reportProgress: true,
