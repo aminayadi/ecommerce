@@ -2,6 +2,7 @@ package com.ecommerce.category.service;
 
 import com.ecommerce.category.domain.Category;
 import com.ecommerce.category.domain.Fields;
+import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.repository.FieldsRepository;
 import com.ecommerce.category.service.dto.CategoryDTO;
 import com.ecommerce.category.service.dto.FieldsDTO;
@@ -30,11 +31,17 @@ public class FieldsService {
     private final FieldsMapper fieldsMapper;
     
     private final CategoryMapper categoryMapper;
+    
+    private final CategoryRepository categoryRepository;
 
-    public FieldsService(FieldsRepository fieldsRepository, FieldsMapper fieldsMapper, CategoryMapper categoryMapper) {
+    public FieldsService(FieldsRepository fieldsRepository, 
+    		FieldsMapper fieldsMapper, 
+    		CategoryMapper categoryMapper,
+    		CategoryRepository categoryRepository) {
         this.fieldsRepository = fieldsRepository;
         this.fieldsMapper = fieldsMapper;
         this.categoryMapper = categoryMapper ;
+        this.categoryRepository = categoryRepository;
     }
 
     /**
@@ -126,6 +133,18 @@ public class FieldsService {
         Category category = categoryMapper.toEntity(mother);
         return fieldsRepository.findByCategory(category).stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
+    
+    /**
+     * Get all the fields by category id.
+     *
+     * @return the list of entities.
+     */
+    public List<FieldsDTO> findAllByCategoryId(String id) {
+        log.debug("Request to get all Fields by category id : ", id);
+        Optional<Category> category = categoryRepository.findById(id);
+        return fieldsRepository.findByCategory(category.get()).stream().map(fieldsMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }    
+    
 
     /**
      * Get all the fields with eager load of many-to-many relationships.

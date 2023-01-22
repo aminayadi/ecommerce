@@ -157,6 +157,22 @@ public class FieldsResource {
         return ResponseUtil.wrapOrNotFound(fieldsDTO);
     }
 
+    
+    /**
+     * {@code GET  /fields/category/:id} : get the "id" category fields.
+     *
+     * @param id the id of the fieldsDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the fieldsDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/fields/category/{id}")
+    public List<FieldsDTO> getFieldsByCategoryId(@PathVariable String id) {
+        log.debug("REST request to get Fields : {}", id);
+        return fieldsService.findAllByCategoryId(id);
+    }
+    
+    
+    
+    
     /**
      * {@code DELETE  /fields/:id} : delete the "id" fields.
      *
