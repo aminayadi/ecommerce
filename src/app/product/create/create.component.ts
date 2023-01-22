@@ -19,8 +19,7 @@ import { UploadImagesComponent } from '../upload-images/upload-images.component'
 export class CreateComponent implements OnInit {
   imageInfos?: Observable<any>;
 
-  @ViewChild(UploadImagesComponent) pup!: UploadImagesComponent;
-
+  @ViewChild('child', {static: false})  child!: UploadImagesComponent;
   
   categories  :any =[];
   fields: Fields[] = [];
@@ -57,7 +56,9 @@ export class CreateComponent implements OnInit {
     return this.productForm.controls["pfields"] as FormArray;
   }
 
-
+  ngAfterViewInit() {
+    this.imageInfos = this.child.imageInfos;
+}
 
   addNewPfields(name:string){
     this.pfieldForm = this._formBuilder.group({
@@ -139,7 +140,7 @@ export class CreateComponent implements OnInit {
   }
 
    submit() {
-    let lphotos:Photo[] = [];
+  /*  let lphotos:Photo[] = [];
    
   this.pup.imageInfos!.forEach((element) => 
     {
@@ -154,14 +155,12 @@ export class CreateComponent implements OnInit {
     }
     );
 
-
-
-    
     this.productForm.controls['lphotos'].setValue(lphotos);
+
+*/
+
     console.log("LAST MOMENT :) ", this.productForm.value);
     
-
-
     this.productsService.create(this.productForm.value)
     .subscribe({
       next:(data) => {
@@ -173,6 +172,43 @@ export class CreateComponent implements OnInit {
     })
   }
 
+
+  public doSomethingWithCount(imageInfos: Observable<any>):void {
+    console.log("doSomethingWithCount :) ");
+    
+    this.imageInfos = imageInfos;
+    //. . . More logic
+    let lphotos:Photo[] = [];
+    this.imageInfos!.forEach((element) => 
+    {
+      console.log("FROM CREATE FORM : -----------",element);
+      let name: string = "hello";
+      if(element.name)
+      {
+        name = element.name; 
+
+      }
+      let p:Photo={
+        id: '',
+        path: element.url,
+        name: name,
+        type: ''
+      }
+      lphotos.push(p);
+    }
+    );
+
+    this.productForm.controls['lphotos'].setValue(lphotos);
+
+    console.log("doSomethingWithCount :) ", this.productForm.value);
+
+
+
+}
+
+
+
+  
   getFieldsofCategories(id: string):Fields[]{
     console.log("this.categories: ", this.categories,"  this.categories.length ", this.categories.length);
     for(let i=0; i< this.categories.length; i++)

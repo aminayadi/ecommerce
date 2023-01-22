@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -11,6 +11,7 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 
 export class UploadImagesComponent implements OnInit {
 
+  @Output() imageInfosChanged: EventEmitter<any> = new EventEmitter();
   selectedFiles?: FileList;
   progressInfos: any[] = [];
   message: string[] = [];
@@ -58,6 +59,8 @@ export class UploadImagesComponent implements OnInit {
             this.message.push(msg);
             this.imageInfos = this.uploadService.getFiles();
             this.imageInfos.forEach(element => console.log("element : -----------",element) );
+            this.imageInfosChanged.emit(this.imageInfos);
+            console.log("Emit ok ......................");
           }
         },
         error: (err: any) => {
