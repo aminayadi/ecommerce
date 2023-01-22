@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { FieldsModule } from './fields/fields.module';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ProductModule } from './product/product.module';
     FormsModule,
     ReactiveFormsModule,
     CategoryModule,
-    ProductModule
+    ProductModule,
+    FieldsModule
   ],
   
 
