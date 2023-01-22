@@ -4,6 +4,7 @@ import { HomeComponent } from '../home/home.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { FieldListComponent } from './field-list/field-list.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,10 @@ const routes: Routes = [
     path: 'category/list',
     component: CategoryListComponent
   },
-
+  {
+    path: 'category/fields',
+    component: FieldListComponent
+  },
  
 ];
 

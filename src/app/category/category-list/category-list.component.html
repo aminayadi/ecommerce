@@ -22,6 +22,7 @@
             <td>{{categorie.parent}}</td>
             <td>
             <a class="btn btn-primary"  [routerLink]="['/edit', categorie.id]" > Edit </a> |
+            <a class="btn btn-primary"  [routerLink]="['/fields']" > Fields </a>
             <button type="button" (click)="openDeleteModal(categorie.id)" class="btn btn-danger">Delete</button>
       
             </td>

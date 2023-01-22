@@ -89,10 +89,8 @@ export class CreateComponent implements OnInit {
   getCategoryById(idCateg:any)
   {
     let res:Categorie;
-    console.log("getCategoryById ++++++++++ this.categories : ......", this.categories);
     for (let i=0; i< this.categories.length; i++){
 
-      console.log("categ .........hello : ", this.categories[i]);
       if (this.categories[i].id == idCateg)
       {
         return this.categories[i];
@@ -125,9 +123,9 @@ export class CreateComponent implements OnInit {
         mother = null; 
       
     }
-    console.log("END ------------- fieldçs : ", this.fields);
+
     this.pfields.clear();
-    console.log("PFIELDS ------------- CLEARED : ", this.pfields);
+
 
     for(let i=0; i<this.fields.length;i++)
     {
@@ -140,26 +138,7 @@ export class CreateComponent implements OnInit {
   }
 
    submit() {
-  /*  let lphotos:Photo[] = [];
-   
-  this.pup.imageInfos!.forEach((element) => 
-    {
-      console.log("FROM CREATE FORM : -----------",element);
-      let p:Photo={
-        id: '',
-        path: element.url,
-        name: element.name,
-        type: ''
-      }
-      lphotos.push(p);
-    }
-    );
-
-    this.productForm.controls['lphotos'].setValue(lphotos);
-
-*/
-
-    console.log("LAST MOMENT :) ", this.productForm.value);
+    console.log("Submitting .... :) ", this.productForm.value);
     
     this.productsService.create(this.productForm.value)
     .subscribe({
@@ -174,7 +153,7 @@ export class CreateComponent implements OnInit {
 
 
   public doSomethingWithCount(imageInfos: Observable<any>):void {
-    console.log("doSomethingWithCount :) ");
+  
     
     this.imageInfos = imageInfos;
     //. . . More logic
@@ -182,25 +161,26 @@ export class CreateComponent implements OnInit {
     this.imageInfos!.forEach((element) => 
     {
       console.log("FROM CREATE FORM : -----------",element);
-      let name: string = "hello";
-      if(element.name)
+      for (let j=0; j<element.length;j++)
       {
-        name = element.name; 
-
-      }
-      let p:Photo={
-        id: '',
-        path: element.url,
-        name: name,
-        type: ''
-      }
-      lphotos.push(p);
+        let p:Photo={
+          id: '',
+          path: element[j].url,
+          name: element[j].name,
+          type: ''
+        }
+        lphotos.push(p);
     }
-    );
 
+    console.log("LPHOTOS :) ", lphotos);
+    
     this.productForm.controls['lphotos'].setValue(lphotos);
 
     console.log("doSomethingWithCount :) ", this.productForm.value);
+  }
+
+    );
+
 
 
 
