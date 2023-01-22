@@ -18,6 +18,11 @@ import { EditComponent } from './edit/edit.component';
     CommonModule,
     FieldsRoutingModule,
     FormsModule
+  ],
+  exports:[
+    ListComponent,
+    CreateComponent,
+    EditComponent    
   ]
 })
 export class FieldsModule { }

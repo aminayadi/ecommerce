@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Fields } from 'src/app/model/fields';
 import { FieldsService } from 'src/app/services/fields.service';
 
@@ -16,20 +16,31 @@ export class ListComponent implements OnInit {
 
   deleteModal: any;
   idTodelete: String = '';
+
  
-  constructor(private fieldsService: FieldsService) {}
+
+  constructor(private fieldsService: FieldsService,
+    private route: ActivatedRoute,
+              private router:Router,) {}
  
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe((param : ParamMap) => {
+      var id = String(param.get('id'));
+      this.getByIdCategory(id);
+    });
+
+
+    
 
     this.deleteModal = new window.bootstrap.Modal(
       document.getElementById('deleteModal')
     );
- 
-    this.get();
+
   }
  
-  get() {
-    this.fieldsService.getallbyIdCategory().subscribe((data) => {
+  getByIdCategory(id:string) {
+    this.fieldsService.getallbyIdCategory(id).subscribe((data) => {
       this.allFields = data;
     });
   }

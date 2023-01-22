@@ -10,10 +10,10 @@ export class FieldsService {
   
 
   constructor(private http: HttpClient) { }
-  getallbyIdCategory() {
+  getallbyIdCategory(id:String) {
     console.log("get all categories ........");
     //return this.http.get<Categorie[]>("http://localhost:8080/services/categorydb/api/categories");
-    return this.http.get<Fields[]>("http://localhost:8081/api/fields");
+    return this.http.get<Fields[]>(`http://localhost:8081/api/fields/category/${id}`);
   }
 
   create(payload: Fields) {

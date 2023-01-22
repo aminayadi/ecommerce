@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../components/header/header.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { EditComponent } from './edit/edit.component';
+import { FieldsModule } from '../fields/fields.module';
 @NgModule({
   declarations: [
     
@@ -23,7 +24,8 @@ import { EditComponent } from './edit/edit.component';
     CommonModule,
     CategoryRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FieldsModule
   ]
 })
 export class CategoryModule { }

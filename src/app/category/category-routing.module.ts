@@ -24,7 +24,7 @@ const routes: Routes = [
     component: CategoryListComponent
   },
   {
-    path: 'category/fields',
+    path: 'fields/:id',
     component: FieldListComponent
   },
  
