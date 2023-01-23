@@ -164,10 +164,10 @@ export class CreateComponent implements OnInit {
       for (let j=0; j<element.length;j++)
       {
         let p:Photo={
-          id: '',
           path: element[j].url,
           name: element[j].name,
-          type: ''
+          type: '',
+          id: null
         }
         lphotos.push(p);
     }

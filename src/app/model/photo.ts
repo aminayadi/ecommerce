@@ -1,5 +1,5 @@
 export class Photo {
-    id!:string;
+    id!:string | null;
     name!:string;
     path!:string;
     type!:string;
