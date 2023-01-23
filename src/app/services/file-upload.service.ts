@@ -17,7 +17,14 @@ export class FileUploadService {
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
-    formData.append('files', file);
+    
+    const oldName = file.name;
+    const fileExtension = oldName.slice(oldName.lastIndexOf('.') - oldName.length);
+    const newname = Date.now() + fileExtension;
+
+
+
+    formData.append('files', file, newname);
 
     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
       reportProgress: true,

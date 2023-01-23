@@ -47,8 +47,8 @@ export class UploadImagesComponent implements OnInit {
   }
 
   upload(idx: number, file: File): void {
+  
     this.progressInfos[idx] = { value: 0, fileName: file.name };
-
     if (file) {
       this.uploadService.upload(file).subscribe({
         next: (event: any) => {
@@ -60,7 +60,7 @@ export class UploadImagesComponent implements OnInit {
             this.imageInfos = this.uploadService.getFiles();
             this.imageInfos.forEach(element => console.log("element : -----------",element) );
             this.imageInfosChanged.emit(this.imageInfos);
-            console.log("Emit ok ......................");
+            console.log("Emit ok ......................",file.name);
           }
         },
         error: (err: any) => {
