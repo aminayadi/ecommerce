@@ -18,6 +18,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { FieldsModule } from './fields/fields.module';
+import { ClientComponent } from './components/client/client.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FieldsModule } from './fields/fields.module';
     AccountComponent,
     HomeComponent,
     FooderComponent,
+    ClientComponent,
  
    
   ],
