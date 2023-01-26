@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators ,FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
@@ -30,7 +31,10 @@ export class AccountComponent implements OnInit {
 
       
 
-  constructor(private authService: AuthService,private formBuilder: FormBuilder, private tokenStorage: TokenStorageService) { }
+  constructor(private router: Router,
+    private authService: AuthService,
+    private formBuilder: FormBuilder, 
+    private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
@@ -82,7 +86,7 @@ export class AccountComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-       // this.reloadPage();
+        this.router.navigate(['myspace']);
       },
       error: err => {
         this.errorMessage = err.error.message;
