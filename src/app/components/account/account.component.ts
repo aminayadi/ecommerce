@@ -86,6 +86,9 @@ export class AccountComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+
+        console.log("Roles : ", this.roles);   
+        console.log("user : ", this.tokenStorage.getUser()) ;    
         this.router.navigate(['myspace']);
       },
       error: err => {
