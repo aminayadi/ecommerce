@@ -15,6 +15,10 @@ export class MyspaceComponent  {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  isAnnounce: boolean = true ;
+  isProfile: boolean = false ;
+  isAbout: boolean = false ;
+
   constructor(private observer: BreakpointObserver, private router: Router) {}
 
   ngAfterViewInit() {
@@ -41,5 +45,26 @@ export class MyspaceComponent  {
           this.sidenav.close();
         }
       });
+  }
+
+  goTo(path:string): void {
+    console.log("path : ", path);
+    switch(path){
+      case 'announce':
+        this.isAnnounce= true ;
+        this.isProfile= false ;
+        this.isAbout= false ;
+        break;
+      case 'profile':
+        this.isAnnounce= false ;
+        this.isProfile= true ;
+        this.isAbout= false ;
+        break;  
+      case 'about':
+        this.isAnnounce= false ;
+        this.isProfile= false ;
+        this.isAbout= true ;
+        break;              
+    }
   }
 }
