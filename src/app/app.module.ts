@@ -19,7 +19,15 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { FieldsModule } from './fields/fields.module';
 import { ClientComponent } from './components/client/client.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyspaceModule } from './myspace/myspace.module';
+import { MyspaceComponent } from './myspace/myspace.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,7 @@ import { ClientComponent } from './components/client/client.component';
     HomeComponent,
     FooderComponent,
     ClientComponent,
- 
+    MyspaceComponent
    
   ],
   imports: [
@@ -44,7 +52,16 @@ import { ClientComponent } from './components/client/client.component';
     ReactiveFormsModule,
     CategoryModule,
     ProductModule,
-    FieldsModule
+    FieldsModule,
+    BrowserAnimationsModule,
+    MyspaceModule,
+
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
   ],
   
 
