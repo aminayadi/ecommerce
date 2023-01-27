@@ -142,6 +142,18 @@ public class ProductResource {
     }
 
     /**
+     * {@code GET  /productsforcurrent} : get all the products for current user.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of products in body.
+     */
+    @GetMapping("/productsforcurrent")
+    public List<ProductDTO> getAllProductsForCurrent() {
+        log.debug("REST request to get all Products for current user");
+        return productService.findAllForCurrent();
+    }    
+    
+    
+    /**
      * {@code GET  /products/:id} : get the "id" product.
      *
      * @param id the id of the productDTO to retrieve.

@@ -14,6 +14,7 @@ import com.ecommerce.product.service.dto.ProductDTO;
 import com.ecommerce.product.service.mapper.PfieldMapper;
 import com.ecommerce.product.service.mapper.PhotoMapper;
 import com.ecommerce.product.service.mapper.ProductMapper;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -148,6 +149,22 @@ public class ProductService {
         return productRepository.findAll().stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
+    /**
+     * Get all the products for current user.
+     *
+     * @return the list of entities.
+     */
+    public List<ProductDTO> findAllForCurrent() {
+        log.debug("Request to get all Products for current user");
+        
+        String userlogin = SecurityUtils.getCurrentUserLogin().get();
+        log.debug("current user : ", userlogin);
+
+        
+        return productRepository.findByIduser(userlogin).stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }    
+    
+    
     /**
      * Get one product by id.
      *

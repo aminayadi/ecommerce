@@ -1,6 +1,9 @@
 package com.ecommerce.product.repository;
 
 import com.ecommerce.product.domain.Product;
+
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,4 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ProductRepository extends MongoRepository<Product, String> {}
+public interface ProductRepository extends MongoRepository<Product, String> {
+    List<Product> findByIduser(String id);	
+
+}
