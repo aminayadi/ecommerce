@@ -17,14 +17,6 @@ export class ProfileComponent implements OnInit {
       password:'',
     };
 
-    public user1 : User 
-    = {
-      id :'',
-      username :'ali baba',
-      email:'coucou',
-      password:'',
-    };
-
     public email:string='';
 
   constructor(private authService: AuthService,) { 
@@ -38,7 +30,7 @@ export class ProfileComponent implements OnInit {
   loadprofile():void{
     this.authService.account().subscribe((data) => {
       this.user = data;
-
+      console.log(this.user);
       this.email = data.email ;
       console.log(this.email);
     });    

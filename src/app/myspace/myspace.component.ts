@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -19,7 +19,26 @@ export class MyspaceComponent  {
   isProfile: boolean = false ;
   isAbout: boolean = false ;
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  constructor(private observer: BreakpointObserver, 
+    private route: ActivatedRoute,
+    private router: Router) {}
+
+ngOnInit(): void {
+
+this.route.paramMap.subscribe((param) => {
+var path = String(param.get('path'));
+switch(path){
+  case('newannounce'):
+    this.isAnnounce= false ;
+    this.isProfile=false ;
+    this.isAbout=true ;
+}
+
+});
+}
+
+
+
 
   ngAfterViewInit() {
     this.observer

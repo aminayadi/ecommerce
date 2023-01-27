@@ -18,4 +18,9 @@ export class ProductsService {
     return this.http.post<Product>('http://localhost:8080/services/productdb/api/products', payload);
   }
 
+  delete(id:String){
+    return this.http.delete<Product>(`http://localhost:8080/services/productdb/api/products/${id}`);
+ }
+
+
 }

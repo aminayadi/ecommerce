@@ -3,26 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { HelpComponent } from './help/help.component';
 import { MyannouncesComponent } from './myannounces/myannounces.component';
+import { MyspaceComponent } from './myspace.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'myspace/home',
-    component: MyannouncesComponent,
+    path: 'myspace/:path',
+    component: MyspaceComponent,
   },
-  {
-    path: 'myspace/profile',
-    component: ProfileComponent,
-  },
-  {
-    path: 'myspace/about',
-    component: AboutComponent,
-  },
-  {
-    path: 'myspace/help',
-    component: HelpComponent,
-  },
+
   {
     path: '**',
     component: NotFoundComponent,
