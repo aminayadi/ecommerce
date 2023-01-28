@@ -51,14 +51,18 @@ export class EditComponent implements OnInit {
   getById(id: String) {
     this.productsService.getById(id).subscribe((data) => {
       this.productForm = data;
+      console.log("this.product form : ", this.productForm);
     });
   }
+  
+
   
   update() {
     this.productsService.update(this.productForm)
     .subscribe({
       next:(data) => {
-        this.router.navigate(["/product/list"]);
+        console.log("success .....");
+       // this.router.navigate(["/myspace/announce/null"]);
       },
       error:(err) => {
         console.log(err);

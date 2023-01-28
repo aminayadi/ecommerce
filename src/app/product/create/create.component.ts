@@ -104,7 +104,7 @@ export class CreateComponent implements OnInit {
     this.fields=[];
     this._category=this.productForm.get('category');
     console.log("_category : ", this._category);
-    this.pfieldForm.value.idcategory = this._category.id;
+   // this.pfieldForm.value.idcategory = this._category.id;
     let mother = this._category!.value!;
 
 
@@ -140,6 +140,7 @@ export class CreateComponent implements OnInit {
   }
 
    submit() {
+    this.productForm.value.idcategory = this.productForm.value.category.name ; 
     console.log("Submitting .... :) ", this.productForm.value);
    
     this.productsService.create(this.productForm.value)

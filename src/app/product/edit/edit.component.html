@@ -6,8 +6,8 @@
                 <div class="header">Product</div>
 
                 <div class="mb-3">
-                    <label for="txtName" class="form-label">ID</label>
-                    <input type="text" name="name" [(ngModel)] = "productForm.id" class="form-control" id="txtName" disabled="true"/>
+                    <label for="txtId" class="form-label">ID</label>
+                    <input type="text" name="id" [(ngModel)] = "productForm.id" class="form-control" id="txtId" disabled="true"/>
                   </div>
 
                   <div class="mb-3">
@@ -56,7 +56,7 @@
               <!--app-upload-images (imageInfosChanged)="doSomethingWithCount($event)"></app-upload-images-->
 
                 <!--div class="form-group"-->
-                  <button class="button tp-in-btn w-100"  type="button"  >Save</button>
+                  <button class="button tp-in-btn w-100"  type="button" (click)="update()" >Save</button>
                 <!--/div-->
               </form>
             </div>
