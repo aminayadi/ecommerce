@@ -9,7 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'myspace/:path',
+    path: 'myspace/:path/:id',
     component: MyspaceComponent,
   },
 

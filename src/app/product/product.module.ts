@@ -27,6 +27,7 @@ import { ListComponent } from './list/list.component';
      
     ],
     exports:[
+        EditComponent,
       CreateComponent,
       ListComponent
     ]

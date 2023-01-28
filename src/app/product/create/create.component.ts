@@ -43,7 +43,8 @@ export class CreateComponent implements OnInit {
       zone: ['', Validators.required],
       category: ['', Validators.required],
       pfields:this._formBuilder.array([]),
-      lphotos:[]
+      lphotos:[],
+      idcategory:['']
  
   });
 
@@ -103,6 +104,7 @@ export class CreateComponent implements OnInit {
     this.fields=[];
     this._category=this.productForm.get('category');
     console.log("_category : ", this._category);
+    this.pfieldForm.value.idcategory = this._category.id;
     let mother = this._category!.value!;
 
 
@@ -139,7 +141,7 @@ export class CreateComponent implements OnInit {
 
    submit() {
     console.log("Submitting .... :) ", this.productForm.value);
-    
+   
     this.productsService.create(this.productForm.value)
     .subscribe({
       next:(data) => {

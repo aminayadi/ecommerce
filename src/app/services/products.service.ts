@@ -21,5 +21,12 @@ export class ProductsService {
     return this.http.delete<Product>(`http://localhost:8080/services/productdb/api/products/${id}`);
  }
 
+ getById(id: String) {
+  return this.http.get<Product>(`http://localhost:8080/services/productdb/api/products/${id}`);
+ }
+
+ update(payload:Product){
+  return this.http.put(`http://localhost:8080/services/productdb/api/products/${payload.id}`,payload);
+ }
 
 }

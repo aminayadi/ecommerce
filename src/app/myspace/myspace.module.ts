@@ -10,6 +10,7 @@ import { MyannouncesComponent } from './myannounces/myannounces.component';
 import { ListComponent } from '../product/list/list.component';
 import { ProductModule } from '../product/product.module';
 import { MyspaceComponent } from './myspace.component';
+import { EditannounceComponent } from './editannounce/editannounce.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MyspaceComponent } from './myspace.component';
     MyannouncesComponent,
     NotFoundComponent,
     ProfileComponent,
+    EditannounceComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,7 @@ import { MyspaceComponent } from './myspace.component';
     MyannouncesComponent,
     NotFoundComponent,
     ProfileComponent,
-
+    EditannounceComponent,
 
   ],
   bootstrap: [],

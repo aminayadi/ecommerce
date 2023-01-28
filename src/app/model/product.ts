@@ -5,8 +5,8 @@ export class Product {
     idcategory!:string;
     iduser!:string;
     name!:string;
-    photo!:Blob;
-    photo_content_type!:string;
+    photo!:Blob | null;
+    photo_content_type!:string |null;
     description!:string;
     zone!:string;
     lphotos!:Photo[];
