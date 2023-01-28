@@ -162,7 +162,7 @@ public class ProductResource {
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDTO> getProduct(@PathVariable String id) {
         log.debug("REST request to get Product : {}", id);
-        Optional<ProductDTO> productDTO = productService.findOne(id);
+        Optional<ProductDTO> productDTO = Optional.ofNullable(productService.findOne(id));
         return ResponseUtil.wrapOrNotFound(productDTO);
     }
 

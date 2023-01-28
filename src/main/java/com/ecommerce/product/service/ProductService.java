@@ -85,6 +85,7 @@ public class ProductService {
         	
         	PfieldDTO pfieldDTO = productDTO.getPfields().get(i);
         	pfieldDTO.setType(etype.STRING);
+        	pfieldDTO.setProduct(productMapper.toDto(product));
         	log.debug("Request to save Pfield : {}", pfieldDTO);
             Pfield pfield = pfieldMapper.toEntity(pfieldDTO);
             pfield = pfieldRepository.save(pfield);        	
@@ -160,8 +161,13 @@ public class ProductService {
         String userlogin = SecurityUtils.getCurrentUserLogin().get();
         log.debug("current user : ", userlogin);
 
+        List<ProductDTO> lpdto = productRepository.findByIduser(userlogin).stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
         
-        return productRepository.findByIduser(userlogin).stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        for (int i=0; i < lpdto.size(); i++)
+        {
+        	lpdto.get(i).setPfields(pfieldRepository.findAllByProduct(productMapper.toEntity(lpdto.get(i))));
+        }
+        return lpdto;
     }    
     
     
@@ -171,9 +177,20 @@ public class ProductService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    public Optional<ProductDTO> findOne(String id) {
+    public ProductDTO findOne(String id) {
         log.debug("Request to get Product : {}", id);
-        return productRepository.findById(id).map(productMapper::toDto);
+        ProductDTO pdto = productRepository.findById(id).map(productMapper::toDto).get();
+
+        
+        Product p = productRepository.findById(id).get();
+        pdto.setPfields(pfieldRepository.findAllByProduct(p));
+  
+        
+        
+        
+        
+        
+        return pdto;
     }
 
     /**

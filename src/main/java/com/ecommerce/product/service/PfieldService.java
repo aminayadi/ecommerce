@@ -1,6 +1,7 @@
 package com.ecommerce.product.service;
 
 import com.ecommerce.product.domain.Pfield;
+import com.ecommerce.product.domain.Product;
 import com.ecommerce.product.repository.PfieldRepository;
 import com.ecommerce.product.service.dto.PfieldDTO;
 import com.ecommerce.product.service.mapper.PfieldMapper;
@@ -85,6 +86,18 @@ public class PfieldService {
         return pfieldRepository.findAll().stream().map(pfieldMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
+    /**
+     * Get all the pfields.
+     *
+     * @return the list of entities.
+     */
+    public List<PfieldDTO> findAllByProduct(Product product) {
+        log.debug("Request to get all Pfields");
+        return pfieldRepository.findAllByProduct(product);
+    }    
+    
+    
+    
     /**
      * Get one pfield by id.
      *
