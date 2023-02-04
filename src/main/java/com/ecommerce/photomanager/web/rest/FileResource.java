@@ -144,6 +144,17 @@ public class FileResource {
     }
 
     /**
+     * {@code GET  /filesofproduct/:idproduct} : get all the files of product.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of files in body.
+     */
+    @GetMapping("/filesofproduct/{idproduct}")
+    public List<FileDTO> getAllFilesOfProduct(@PathVariable String idproduct) {
+        log.debug("REST request to get all Files of product : ", idproduct);
+        return fileService.findAllByIdProduct(idproduct);
+    }
+
+    /**
      * {@code GET  /files/:id} : get the "id" file.
      *
      * @param id the id of the fileDTO to retrieve.

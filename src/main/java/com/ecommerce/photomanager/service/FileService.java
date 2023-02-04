@@ -3,6 +3,7 @@ package com.ecommerce.photomanager.service;
 import com.ecommerce.photomanager.domain.File;
 import com.ecommerce.photomanager.repository.FileRepository;
 import com.ecommerce.photomanager.service.dto.FileDTO;
+import com.ecommerce.photomanager.service.dto.FolderDTO;
 import com.ecommerce.photomanager.service.mapper.FileMapper;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,6 +84,16 @@ public class FileService {
     public List<FileDTO> findAll() {
         log.debug("Request to get all Files");
         return fileRepository.findAll().stream().map(fileMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
+     * Get all the folders by idproduct.
+     *
+     * @return the list of entities.
+     */
+    public List<FileDTO> findAllByIdProduct(String idproduct) {
+        log.debug("Request to get all FileDTOs by idproduct");
+        return fileRepository.findByIdproduct(idproduct).stream().map(fileMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

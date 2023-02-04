@@ -3,6 +3,7 @@ package com.ecommerce.photomanager.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * A DTO for the {@link com.ecommerce.photomanager.domain.File} entity.
@@ -16,6 +17,8 @@ public class FileDTO implements Serializable {
     private String name;
 
     private String type;
+
+    private String idproduct;
 
     private FolderDTO folder;
 
@@ -51,6 +54,14 @@ public class FileDTO implements Serializable {
         this.folder = folder;
     }
 
+    public String getIdproduct() {
+        return idproduct;
+    }
+
+    public void setIdproduct(String idproduct) {
+        this.idproduct = idproduct;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -72,14 +83,8 @@ public class FileDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "FileDTO{" +
-            "id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", type='" + getType() + "'" +
-            ", folder=" + getFolder() +
-            "}";
+        return "FileDTO [id=" + id + ", name=" + name + ", type=" + type + ", idproduct=" + idproduct + ", folder=" + folder + "]";
     }
 }

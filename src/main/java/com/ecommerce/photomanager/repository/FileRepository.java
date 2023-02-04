@@ -1,6 +1,7 @@
 package com.ecommerce.photomanager.repository;
 
 import com.ecommerce.photomanager.domain.File;
+import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,4 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface FileRepository extends MongoRepository<File, String> {}
+public interface FileRepository extends MongoRepository<File, String> {
+    List<File> findByIdproduct(String idproduct);
+}
