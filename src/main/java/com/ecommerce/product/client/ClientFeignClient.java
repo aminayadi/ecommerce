@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import feign.Headers;
 import com.ecommerce.product.service.dto.ClientDTO;
 
-
-
-
-
-
-
 //@FeignClient(name = "Carsdb",url = "http://localhost:8081")
 
 @FeignClient(name = "127.0.0.1:8083")
@@ -28,14 +22,7 @@ import com.ecommerce.product.service.dto.ClientDTO;
 })
 
 
-
-
-
 public interface ClientFeignClient {
-
-
-
-
 
 	@GetMapping("/api/clients")
     public List<ClientDTO> getAllClients();

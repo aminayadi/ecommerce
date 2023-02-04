@@ -1,13 +1,15 @@
 package com.ecommerce.product.service;
 
+import com.ecommerce.product.client.PhotoFeignClient;
 import com.ecommerce.product.domain.Pfield;
-import com.ecommerce.product.domain.Photo;
+
 import com.ecommerce.product.domain.Product;
 import com.ecommerce.product.domain.enumeration.etype;
 import com.ecommerce.product.repository.PfieldRepository;
 import com.ecommerce.product.repository.PhotoRepository;
 import com.ecommerce.product.repository.ProductRepository;
 import com.ecommerce.product.security.SecurityUtils;
+import com.ecommerce.product.service.dto.FileDTO;
 import com.ecommerce.product.service.dto.PfieldDTO;
 import com.ecommerce.product.service.dto.PhotoDTO;
 import com.ecommerce.product.service.dto.ProductDTO;
@@ -15,6 +17,8 @@ import com.ecommerce.product.service.mapper.PfieldMapper;
 import com.ecommerce.product.service.mapper.PhotoMapper;
 import com.ecommerce.product.service.mapper.ProductMapper;
 
+
+import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +45,10 @@ public class ProductService {
     
     private final PhotoRepository photoRepository;
 
-    private final PhotoMapper photoMapper;      
+    private final PhotoMapper photoMapper;    
+
+    private  PhotoFeignClient photoFeignClient;
+
     
     public ProductService(
     		ProductRepository productRepository, 
@@ -49,14 +56,16 @@ public class ProductService {
     		PfieldRepository pfieldRepository,
     		PfieldMapper pfieldMapper,
     		PhotoRepository photoRepository,
-    		PhotoMapper photoMapper    		
+    		PhotoMapper photoMapper,
+    		PhotoFeignClient photoFeignClient
     	) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.pfieldRepository = pfieldRepository;
         this.pfieldMapper = pfieldMapper;  
         this.photoRepository = photoRepository;
-        this.photoMapper = photoMapper;          
+        this.photoMapper = photoMapper;   
+        this.photoFeignClient = photoFeignClient ;
     }
 
     /**
@@ -64,8 +73,9 @@ public class ProductService {
      *
      * @param productDTO the entity to save.
      * @return the persisted entity.
+     * @throws URISyntaxException 
      */
-    public ProductDTO save(ProductDTO productDTO) {
+    public ProductDTO save(ProductDTO productDTO) throws URISyntaxException {
         log.debug("Request to save Product : {}", productDTO);
         
         //Set UserID
@@ -93,16 +103,16 @@ public class ProductService {
         }
 
         ProductDTO pMtoDTO = productMapper.toDto(product) ;
-        
-        for(int i=0; i<productDTO.getLphotos().size(); i++) {
-        	
-        	PhotoDTO photoDTO = productDTO.getLphotos().get(i);
-        	photoDTO.setProduct(pMtoDTO);
        
-            Photo photo = photoMapper.toEntity(photoDTO);
-            photo = photoRepository.save(photo);        	
+        for(int i=0; i<productDTO.getLphotos().size(); i++) {
+        	       
+        	FileDTO fileDTO = new FileDTO();
+        	fileDTO.setName(productDTO.getLphotos().get(i).getPath());
+        	fileDTO.setIdproduct(productDTO.getId());
         	
-        }        
+        	this.photoFeignClient.createFile(fileDTO);
+        	        	
+        }       
         
         return pMtoDTO;
     }
@@ -162,11 +172,26 @@ public class ProductService {
         log.debug("current user : ", userlogin);
 
         List<ProductDTO> lpdto = productRepository.findByIduser(userlogin).stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
-        
+       
+        log.debug("List of pFields ================> : ", lpdto);
         for (int i=0; i < lpdto.size(); i++)
         {
         	lpdto.get(i).setPfields(pfieldRepository.findAllByProduct(productMapper.toEntity(lpdto.get(i))));
+	        
+        	List<FileDTO> lfdto = this.photoFeignClient.getAllFilesOfProduct(lpdto.get(i).getId());
+        	log.debug("List of photo : ", lfdto, "of ", lpdto.get(i).getId());
+
+          
+        	for(int j=0; j<lfdto.size(); j++) {
+                	
+        		PhotoDTO phdto = new PhotoDTO();
+        		phdto.setName(lfdto.get(j).getName());
+        		lpdto.get(i).getLphotos().add(phdto);
+            
+            }
+        
         }
+        
         return lpdto;
     }    
     
@@ -180,16 +205,10 @@ public class ProductService {
     public ProductDTO findOne(String id) {
         log.debug("Request to get Product : {}", id);
         ProductDTO pdto = productRepository.findById(id).map(productMapper::toDto).get();
-
         
         Product p = productRepository.findById(id).get();
         pdto.setPfields(pfieldRepository.findAllByProduct(p));
-  
-        
-        
-        
-        
-        
+
         return pdto;
     }
 
