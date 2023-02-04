@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Pfield } from 'src/app/model/pfield';
+import { Photo } from 'src/app/model/photo';
 import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -17,6 +19,7 @@ export class EditComponent implements OnInit {
   @Input() index!: String;
   pfieldForm!: FormGroup;
   productForm!: FormGroup;
+  imageInfos?: Observable<any>;
 
   constructor(private route: ActivatedRoute,
     private router:Router,
@@ -109,5 +112,40 @@ export class EditComponent implements OnInit {
       }
     })
   }
+
+  public doSomethingWithCount(imageInfos: Observable<any>):void {
+  
+    
+    this.imageInfos = imageInfos;
+    //. . . More logic
+    let lphotos:Photo[] = [];
+    this.imageInfos!.forEach((element) => 
+    {
+      console.log("FROM CREATE FORM : -----------",element);
+      for (let j=0; j<element.length;j++)
+      {
+        let p:Photo={
+          path: element[j].url,
+          name: element[j].name,
+          type: '',
+          id: null
+        }
+        lphotos.push(p);
+    }
+
+    console.log("LPHOTOS :) ", lphotos);
+    
+    this.productForm.controls['lphotos'].setValue(lphotos);
+
+    console.log("doSomethingWithCount :) ", this.productForm.value);
+  }
+
+    );
+
+
+
+
+}
+
 
 }
