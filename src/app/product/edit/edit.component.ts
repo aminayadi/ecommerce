@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pfield } from 'src/app/model/pfield';
 import { Product } from 'src/app/model/product';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -14,51 +15,90 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
 export class EditComponent implements OnInit {
   
   @Input() index!: String;
-  
-  productForm: Product = {
-    id :'',
-    name :'',
-    idcategory:'',
-    iduser: '',
-    description: '',
-    zone:'',
-    lphotos:[],
-    photo: null,
-    photo_content_type:null   
-  };
+  pfieldForm!: FormGroup;
+  productForm!: FormGroup;
 
   constructor(private route: ActivatedRoute,
     private router:Router,
     private categoriesService:CategoriesService,
-    private _formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private productsService: ProductsService,
-    private tokenStorageService: TokenStorageService) { }
+    private tokenStorageService: TokenStorageService) { 
+
+      this.productForm = this.fb.group({
+        id: ['', Validators.required],
+        name: ['', Validators.required],
+        idcategory: ['', Validators.required],
+        iduser: ['', Validators.required],
+        description: ['', Validators.required],
+        zone: ['', Validators.required],
+        lphotos:[],
+        photoContentType:null,
+        photo:null,
+        createdat:null,
+        updatedat:null,
+
+        pfields:this.fb.array([]),
+    });
+
+  }
+
+  addPfield(_pfield:Pfield) {
+    const pField = this.fb.group({
+        name: [_pfield.name, Validators.required],
+        value: [_pfield.value, Validators.required]
+    });
+  
+    this.pfields.push(pField);
+    console.log("this.zone : ",this.productForm.get('zone'));
+    console.log("this.pfields : ",this.pfields);
+    console.log("this.pfields ******: ",this.productForm.get('pfields'));
+  }
+
 
   ngOnInit(): void {
 
     this.route.paramMap.subscribe((param) => {
       var id = String(param.get('id'));
       this.getById(id);
+    //  console.log("this.id %%%%%%%%%= ", id);
     });
-
+/*
     if (this.index)
     {
       console.log("this.index = ", this.index);
       this.getById(this.index);
+
+
     }
+*/
+   // console.log("this.pfields = ", this.productForm.controls["pfields"]);
   }
 
+  
   getById(id: String) {
     this.productsService.getById(id).subscribe((data) => {
-      this.productForm = data;
-      console.log("this.product form : ", this.productForm);
+
+      console.log("data : .......................................", data);
+      console.log("this.product form : .......................................", this.productForm);
+
+      for (let i=0; i<data.pfields.length;i++)
+        this.addPfield(data.pfields[i]);
+
+
+      this.productForm.setValue(data);
+
+      
+
     });
   }
   
-
+  get pfields() {
+    return this.productForm.controls["pfields"] as FormArray;
+  }
   
   update() {
-    this.productsService.update(this.productForm)
+    this.productsService.update(this.productForm.value)
     .subscribe({
       next:(data) => {
         console.log("success .....");

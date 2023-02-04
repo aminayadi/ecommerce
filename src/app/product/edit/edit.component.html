@@ -2,33 +2,34 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-              <form >
+              <form [formGroup]="productForm" >
                 <div class="header">Product</div>
 
                 <div class="mb-3">
                     <label for="txtId" class="form-label">ID</label>
-                    <input type="text" name="id" [(ngModel)] = "productForm.id" class="form-control" id="txtId" disabled="true"/>
+                    <input type="text" name="id"   formControlName="id"  class="form-control" id="txtId" />
                   </div>
 
                   <div class="mb-3">
                     <label for="txtName" class="form-label">Name</label>
-                    <input type="text" name="name" [(ngModel)] = "productForm.name" class="form-control" id="txtName" />
+                    <input type="text" name="name" formControlName="name" class="form-control" id="txtName" />
                   </div>
-
+                
+                  
                   <div class="mb-3">
                     <label for="txtCategory" class="form-label">Category</label>
-                    <input type="text" name="idcategory" [(ngModel)] = "productForm.idcategory" class="form-control" id="txtCategory" />
+                    <input type="text" name="idcategory" formControlName="idcategory" class="form-control" id="txtCategory" />
                   </div>
 
                   <div class="mb-3">
                     <label for="txtDescription" class="form-label">Description</label>
-                    <input type="text" name="description" [(ngModel)] = "productForm.description" class="form-control" id="txtDescription" />
+                    <input type="text" name="description"  formControlName="description" class="form-control" id="txtDescription" />
                   </div>
 
 
                   <div class="mb-3">
                     <label for="txtZone" class="form-label">Zone</label>
-                    <input type="text" name="zone" [(ngModel)] = "productForm.zone" class="form-control" id="txtZone" />
+                    <input type="text" name="zone"  formControlName="zone" class="form-control" id="txtZone" />
                   </div>
 
 
@@ -37,14 +38,14 @@
 
 
               
-                <!--ng-container formArrayName="pfields">
+                <ng-container formArrayName="pfields">
                   <ng-container *ngFor="let pfieldForm of pfields.controls; let i = index">
                       <div [formGroupName]="i">
                         <input id="value" type="text" formControlName="name" [readonly]="true"/> <br>
                           <input id="value" type="text" formControlName="value" />                
                       </div>
                   </ng-container>
-              </ng-container-->
+              </ng-container>
 
 
 
