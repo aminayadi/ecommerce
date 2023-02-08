@@ -1,0 +1,167 @@
+
+<main>
+    <!-- features__area-start -->
+            <section class="features__area pt-20">
+                <div class="container">
+                    <div class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 row-cols-1 gx-0">
+                        <div class="col">
+                            <div class="features__item d-flex white-bg">
+                                <div class="features__icon mr-20">
+                                    <i class="fal fa-truck"></i>
+                                </div>
+                                <div class="features__content">
+                                    <h6>FREE DELIVERY </h6>
+                                    <p>For all orders over $120</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="features__item d-flex white-bg">
+                                <div class="features__icon mr-20">
+                                    <i class="fal fa-money-check"></i>
+                                </div>
+                                <div class="features__content">
+                                    <h6>SAFE PAYMENT</h6>
+                                    <p>100% secure payment</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="features__item d-flex white-bg">
+                                <div class="features__icon mr-20">
+                                    <i class="fal fa-comments-alt"></i>
+                                </div>
+                                <div class="features__content">
+                                    <h6>24/7 HELP CENTER</h6>
+                                    <p>Delicated 24/7 support</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="features__item features__item-last d-flex white-bg">
+                                <div class="features__icon mr-20">
+                                    <i class="fad fa-user-headset"></i>
+                                </div>
+                                <div class="features__content">
+                                    <h6>FRIENDLY SERVICES</h6>
+                                    <p>30 day satisfaction guarantee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- features__area-end -->
+    
+    
+            <!-- banner__area-start -->
+    
+    
+    
+    
+    <!-- recomand-product-area-start -->
+    <section class="recomand-product-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section__head d-flex justify-content-between mb-10">
+                        <div class="section__title">
+                            <h5 class="st-titile">Best seller</h5>
+                        </div>
+                        <div class="button-wrap">
+                            <a href="shop.html">See All products <i class="fal fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+    <!-- recomand-product-area-end -->
+
+            <section class="banner__area pt-20 pb-10">
+                
+                <div class="container">
+                    <div class="row"> 
+
+                         <!-- product item start -->
+
+                        <div class="col-md-3"  *ngFor="let product of productsDto">
+                            <div class="card" >
+                                <div class="card-main" >
+                                    <div class="discount">-9%</div>
+                                    <div class="label label-green"> location :{{product.zone}}</div>
+                                    
+
+                                        <div class="product-container"  *ngFor="let prod of products" >
+                                            <!--div class="p" ><img src="http://192.168.1.23:8091/api/fmanager/files/1675820786408.jpg"
+                                                    alt="Product"></div-->
+                                                 <div class="p"  *ngFor="let lphoto of prod.lphotos" ><img src="{{lphoto.name}}"
+                                                    alt="Product"></div>
+                                
+                                        
+                                    </div>
+                                    
+                                    <div class="image">
+                                        <img src="{{product.photo}}" alt="Product">
+                                    </div>
+                                    <div class="cart-line"></div>
+                                    <div class="cart-item">
+                                        <ul>
+                                            <li><a href=""><i class="fa fa-shopping-basket"></i></a></li>
+                                            <li><a href=""><i class="fa fa-heart"></i></a></li>
+                                            <li><a href=""><i class="fa fa-search"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <a href="javascript:void(0);">{{product.name}}</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <p><span class="money">$81.00</span><span class="price-old">$89.00</span></p>
+                                </div>
+                            </div>
+                        </div> 
+                        
+                         <!-- product item end -->
+
+                            
+
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- banner__area-end -->
+    
+    
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

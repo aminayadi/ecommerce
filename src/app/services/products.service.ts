@@ -29,5 +29,9 @@ export class ProductsService {
    console.log("Product : UPDATING ..... ", payload);
   return this.http.put(`http://localhost:8080/services/productdb/api/products/${payload.id}`,payload);
  }
+//******** JN  ADDING  GET ALL PRODUCTS*********//
+ getProducts(){
+  return this.http.get<Product[]>("http://localhost:8080/services/productdb/api/productsforcurrent");
+ }
 
 }

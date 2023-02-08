@@ -28,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatDividerModule } from '@angular/material/divider';
     HomeComponent,
     FooderComponent,
     ClientComponent,
-    MyspaceComponent
+    MyspaceComponent,
+    CarouselComponent
    
   ],
   imports: [
