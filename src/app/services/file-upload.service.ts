@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 })
 
 export class FileUploadService {
+  getFilesById(id: String) : Observable<any> {
+    return this.http.get(`${this.baseUrl}/filesbyidproduct/${id}`);
+  }
 
   //private baseUrl = 'http://localhost:8091/api/fmanager';
   private baseUrl = 'http://localhost:8080/services/photodb/api/fmanager';

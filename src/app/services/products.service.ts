@@ -31,7 +31,7 @@ export class ProductsService {
  }
 //******** JN  ADDING  GET ALL PRODUCTS*********//
  getProducts(){
-  return this.http.get<Product[]>("http://localhost:8080/services/productdb/api/productsforcurrent");
+  return this.http.get<Product[]>("http://localhost:8080/services/productdb/api/products");
  }
 
 }

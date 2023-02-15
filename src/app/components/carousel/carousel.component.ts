@@ -51,8 +51,8 @@ inintProductDto(products: Product[]):ProductDto[] {
    
     description:product.description,
     zone:product.zone,
-    lphotos:[],
-    pfield:[],
+    lphotos:product.lphotos,
+    pfield:product.pfields,
     
     };
 
@@ -74,6 +74,13 @@ url:string="assets/img/products/sm1p1.jpg";
 imageChange(event: any){
 
   this.url = event.target.src;
+
+  let input = document.getElementById(
+    'principal',
+  ) as HTMLInputElement | null;
+
+  input!.src= event.target.src;
+
 }
 
 

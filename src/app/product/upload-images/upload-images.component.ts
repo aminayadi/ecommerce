@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -10,7 +10,7 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 })
 
 export class UploadImagesComponent implements OnInit {
-
+  @Input() index!: String;
   @Output() imageInfosChanged: EventEmitter<any> = new EventEmitter();
   selectedFiles?: FileList;
   progressInfos: any[] = [];
@@ -18,13 +18,29 @@ export class UploadImagesComponent implements OnInit {
 
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  
 
-  constructor(private uploadService: FileUploadService) { }
+  constructor(private uploadService: FileUploadService) {
+    console.log("Hello !!!");
+   }
 
   ngOnInit(): void {
-    this.imageInfos = this.uploadService.getFiles();
+    //this.imageInfos =    this.uploadService.getFiles();
+    console.log("Hiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    console.log("Hiiiiiiii ---- this.index : ", this.index);
+    
+    this.getById(this.index);
   }
 
+  getById(id: String) {
+    //this.imageInfos =    this.uploadService.getFiles();
+    this.uploadService.getFilesById(id).subscribe((data) => {
+      this.imageInfos = data;
+    });
+  }
+
+
+  
   selectFiles(event: any): void {
     this.message = [];
     this.progressInfos = [];

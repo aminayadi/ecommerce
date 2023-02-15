@@ -20,6 +20,7 @@ export class EditComponent implements OnInit {
   pfieldForm!: FormGroup;
   productForm!: FormGroup;
   imageInfos?: Observable<any>;
+  id!:String ;
 
   constructor(private route: ActivatedRoute,
     private router:Router,
@@ -62,9 +63,9 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe((param) => {
-      var id = String(param.get('id'));
-      this.getById(id);
-    //  console.log("this.id %%%%%%%%%= ", id);
+      this.id = String(param.get('id'));
+      this.getById(this.id);
+      console.log("this.id %%%%%%%%%= ", this.id);
     });
 /*
     if (this.index)

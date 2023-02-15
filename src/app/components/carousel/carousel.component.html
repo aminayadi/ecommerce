@@ -1,4 +1,3 @@
-
 <main>
     <!-- features__area-start -->
             <section class="features__area pt-20">
@@ -86,24 +85,24 @@
 
                          <!-- product item start -->
 
-                        <div class="col-md-3"  *ngFor="let product of productsDto">
+                        <div class="col-md-3"  *ngFor="let product of productsDto;let i=index">
                             <div class="card" >
                                 <div class="card-main" >
-                                    <div class="discount">-9%</div>
+                                    <div class="discount" *ngIf="i==1">-10%</div>
                                     <div class="label label-green"> location :{{product.zone}}</div>
                                     
 
-                                        <div class="product-container"  *ngFor="let prod of products" >
+                                        <!--div class="product-container"  *ngFor="let prod of products" -->
                                             <!--div class="p" ><img src="http://192.168.1.23:8091/api/fmanager/files/1675820786408.jpg"
                                                     alt="Product"></div-->
-                                                 <div class="p"  *ngFor="let lphoto of prod.lphotos" ><img src="{{lphoto.name}}"
-                                                    alt="Product"></div>
-                                
+                                                 <div class="p"  *ngFor="let lphoto of product.lphotos" ><img src="{{lphoto.name}}"
+                                                    alt="Product" (click)="imageChange($event)"></div>
+                                                   
                                         
-                                    </div>
+                                    <!--/div-->
                                     
                                     <div class="image">
-                                        <img src="{{product.photo}}" alt="Product">
+                                        <img id="principal" src="{{product.photo}}" alt="Product">
                                     </div>
                                     <div class="cart-line"></div>
                                     <div class="cart-item">
@@ -123,7 +122,8 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <p><span class="money">$81.00</span><span class="price-old">$89.00</span></p>
+                                    <p *ngIf="i==0"><span class="money" >DT81.00</span></p>
+                                    <p *ngIf="i==1"><span class="money" >DT500000.00</span><span class="price-old">$550000.00</span></p>
                                 </div>
                             </div>
                         </div> 
