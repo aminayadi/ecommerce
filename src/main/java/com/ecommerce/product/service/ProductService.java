@@ -158,7 +158,31 @@ public class ProductService {
      */
     public List<ProductDTO> findAll() {
         log.debug("Request to get all Products");
-        return productRepository.findAll().stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        List<ProductDTO> lpdto = productRepository.findAll().stream().map(productMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+    
+         log.debug("List of products for current  ================> : ", lpdto);
+         for (int i=0; i < lpdto.size(); i++)
+         {
+         	lpdto.get(i).setPfields(pfieldRepository.findAllByProduct(productMapper.toEntity(lpdto.get(i))));
+ 	        
+         	List<FileDTO> lfdto = this.photoFeignClient.getAllFilesOfProduct(lpdto.get(i).getId());
+         	log.debug("List of photo : ", lfdto, "of ", lpdto.get(i).getId());
+         	lpdto.get(i).setLphotos(new ArrayList<PhotoDTO>());
+
+           
+         	for(int j=0; j<lfdto.size(); j++) {
+                 	
+         		PhotoDTO phdto = new PhotoDTO();
+         		phdto.setName(lfdto.get(j).getName());
+         		lpdto.get(i).getLphotos().add(phdto);
+             
+             }
+         
+         }
+    
+         return lpdto;
+    
+    
     }
 
     /**
