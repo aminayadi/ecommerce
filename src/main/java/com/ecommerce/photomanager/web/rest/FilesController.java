@@ -2,11 +2,16 @@ package com.ecommerce.photomanager.web.rest;
 
 import com.ecommerce.photomanager.domain.FileInfo;
 import com.ecommerce.photomanager.message.ResponseMessage;
+import com.ecommerce.photomanager.service.FileService;
 import com.ecommerce.photomanager.service.FilesStorageService;
+import com.ecommerce.photomanager.service.FolderService;
+import com.ecommerce.photomanager.service.dto.FileDTO;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +32,11 @@ public class FilesController {
 
     @Autowired
     FilesStorageService storageService;
+
+    @Autowired
+    FileService fileService;
+
+    private final Logger log = LoggerFactory.getLogger(FolderService.class);
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFiles(@RequestParam("files") MultipartFile[] files) {
@@ -65,6 +75,36 @@ public class FilesController {
             })
             .collect(Collectors.toList());
 
+        return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
+    }
+
+    @GetMapping("/filesbyidproduct/{idproduct}")
+    public ResponseEntity<List<FileInfo>> getListFilesByIdProduct(@PathVariable String idproduct) {
+        //Extract list of files
+        List<FileDTO> faip = fileService.findAllByIdProduct(idproduct);
+
+        List<FileInfo> fileInfos = storageService
+            .loadAll()
+            .map(path -> {
+                String filename = path.getFileName().toString();
+                String url = MvcUriComponentsBuilder
+                    .fromMethodName(FilesController.class, "getFile", path.getFileName().toString())
+                    .build()
+                    .toString();
+
+                return new FileInfo(filename, url);
+            })
+            .collect(Collectors.toList());
+
+        for (int j = 0; j < fileInfos.size(); j++) {
+            int i;
+            for (i = 0; i < faip.size(); i++) {
+                if (faip.get(i).getName().contains(fileInfos.get(j).getName())) break;
+                log.debug("Request to save Folder : {} ----------", fileInfos.get(j).getName());
+                log.debug("Request to save Folder : {} +++++++++++", faip.get(i));
+            }
+            if (i < faip.size()) fileInfos.remove(i);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
 
