@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import com.ecommerce.product.domain.Photo;
 
 /**
@@ -35,8 +37,29 @@ public class ProductDTO implements Serializable {
     
     private double price;
     
+    private int discount;
     
-    private List<PfieldDTO> pfields;
+    private double afterdiscount;
+    
+    
+    public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public double getAfterdiscount() {
+		afterdiscount = price - (price * discount / 100);
+		return afterdiscount;
+	}
+
+	public void setAfterdiscount(double afterdiscount) {
+		this.afterdiscount =afterdiscount;
+	}
+
+	private List<PfieldDTO> pfields;
     
     private List<PhotoDTO> lphotos;
 
@@ -171,15 +194,18 @@ public class ProductDTO implements Serializable {
 		return "ProductDTO [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name
 				+ ", photo=" + Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description="
 				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", price="
-				+ price + ", pfields=" + pfields + ", lphotos=" + lphotos + ", getId()=" + getId() + ", getPrice()="
-				+ getPrice() + ", getIdcategory()=" + getIdcategory() + ", getIduser()=" + getIduser() + ", getName()="
-				+ getName() + ", getPhoto()=" + Arrays.toString(getPhoto()) + ", getPhotoContentType()="
-				+ getPhotoContentType() + ", getDescription()=" + getDescription() + ", getZone()=" + getZone()
-				+ ", getCreatedat()=" + getCreatedat() + ", getUpdatedat()=" + getUpdatedat() + ", getPfields()="
-				+ getPfields() + ", getLphotos()=" + getLphotos() + ", hashCode()=" + hashCode() + ", getClass()="
-				+ getClass() + ", toString()=" + super.toString() + "]";
+				+ price + ", discount=" + discount + ", afterdiscount=" + afterdiscount + ", pfields=" + pfields
+				+ ", lphotos=" + lphotos + ", getDiscount()=" + getDiscount() + ", getAfterdiscount()="
+				+ getAfterdiscount() + ", getId()=" + getId() + ", getPrice()=" + getPrice() + ", getIdcategory()="
+				+ getIdcategory() + ", getIduser()=" + getIduser() + ", getName()=" + getName() + ", getPhoto()="
+				+ Arrays.toString(getPhoto()) + ", getPhotoContentType()=" + getPhotoContentType()
+				+ ", getDescription()=" + getDescription() + ", getZone()=" + getZone() + ", getCreatedat()="
+				+ getCreatedat() + ", getUpdatedat()=" + getUpdatedat() + ", getPfields()=" + getPfields()
+				+ ", getLphotos()=" + getLphotos() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
+	
 	
 
 

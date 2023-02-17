@@ -1,5 +1,6 @@
 package com.ecommerce.product.domain;
 
+import java.io.Console;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -49,7 +50,19 @@ public class Product implements Serializable {
     
     @Field("discount")
     private int discount;
+    
+    @Field("afterdiscount")
+    private double afterdiscount;
+    
+    public int getDiscount() {
+		return discount;
+	}
 
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	
 
     public double getPrice() {
 		return price;
@@ -58,6 +71,22 @@ public class Product implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+/*-----------------discount calculation-------------*/
+	
+	public double getAfterdiscount() {
+		
+		afterdiscount = price - (price * discount / 100);
+		return afterdiscount;
+	}
+
+	
+	public void setAfterdiscount(double afterdiscount) {
+		this.afterdiscount = afterdiscount;
+		
+	}
+
+	
 
 	@Field("updatedat")
     private LocalDate updatedat;
@@ -217,14 +246,18 @@ public class Product implements Serializable {
 	public String toString() {
 		return "Product [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name + ", photo="
 				+ Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description=" + description
-				+ ", zone=" + zone + ", createdat=" + createdat + ", price=" + price + ", updatedat=" + updatedat
-				+ ", getPrice()=" + getPrice() + ", getId()=" + getId() + ", getIdcategory()=" + getIdcategory()
-				+ ", getIduser()=" + getIduser() + ", getName()=" + getName() + ", getPhoto()="
-				+ Arrays.toString(getPhoto()) + ", getPhotoContentType()=" + getPhotoContentType()
+				+ ", zone=" + zone + ", createdat=" + createdat + ", price=" + price + ", discount=" + discount
+				+ ", afterdiscount=" + afterdiscount + ", updatedat=" + updatedat + ", getDiscount()=" + getDiscount()
+				+ ", getPrice()=" + getPrice() + ", getAfterdiscount()=" + getAfterdiscount() + ", getId()=" + getId()
+				+ ", getIdcategory()=" + getIdcategory() + ", getIduser()=" + getIduser() + ", getName()=" + getName()
+				+ ", getPhoto()=" + Arrays.toString(getPhoto()) + ", getPhotoContentType()=" + getPhotoContentType()
 				+ ", getDescription()=" + getDescription() + ", getZone()=" + getZone() + ", getCreatedat()="
 				+ getCreatedat() + ", getUpdatedat()=" + getUpdatedat() + ", hashCode()=" + hashCode() + ", getClass()="
 				+ getClass() + ", toString()=" + super.toString() + "]";
 	}
+
+	
+	
 
   
 }
