@@ -33,6 +33,9 @@ public class ProductDTO implements Serializable {
 
     private LocalDate updatedat;
     
+    private double price;
+    
+    
     private List<PfieldDTO> pfields;
     
     private List<PhotoDTO> lphotos;
@@ -41,7 +44,15 @@ public class ProductDTO implements Serializable {
         return id;
     }
 
-    public void setId(String id) {
+    public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setId(String id) {
         this.id = id;
     }
 
@@ -159,9 +170,17 @@ public class ProductDTO implements Serializable {
 	public String toString() {
 		return "ProductDTO [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name
 				+ ", photo=" + Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description="
-				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat
-				+ ", pfields=" + pfields + ", lphotos=" + lphotos + "]";
+				+ description + ", zone=" + zone + ", createdat=" + createdat + ", updatedat=" + updatedat + ", price="
+				+ price + ", pfields=" + pfields + ", lphotos=" + lphotos + ", getId()=" + getId() + ", getPrice()="
+				+ getPrice() + ", getIdcategory()=" + getIdcategory() + ", getIduser()=" + getIduser() + ", getName()="
+				+ getName() + ", getPhoto()=" + Arrays.toString(getPhoto()) + ", getPhotoContentType()="
+				+ getPhotoContentType() + ", getDescription()=" + getDescription() + ", getZone()=" + getZone()
+				+ ", getCreatedat()=" + getCreatedat() + ", getUpdatedat()=" + getUpdatedat() + ", getPfields()="
+				+ getPfields() + ", getLphotos()=" + getLphotos() + ", hashCode()=" + hashCode() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
 	}
+
+	
 
 
 

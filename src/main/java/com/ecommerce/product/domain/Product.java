@@ -2,6 +2,8 @@ package com.ecommerce.product.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -41,8 +43,23 @@ public class Product implements Serializable {
 
     @Field("createdat")
     private LocalDate createdat;
+    
+    @Field("price")
+    private double price;
+    
+    @Field("discount")
+    private int discount;
 
-    @Field("updatedat")
+
+    public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Field("updatedat")
     private LocalDate updatedat;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -196,20 +213,18 @@ public class Product implements Serializable {
         return getClass().hashCode();
     }
 
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Product{" +
-            "id=" + getId() +
-            ", idcategory='" + getIdcategory() + "'" +
-            ", iduser='" + getIduser() + "'" +
-            ", name='" + getName() + "'" +
-            ", photo='" + getPhoto() + "'" +
-            ", photoContentType='" + getPhotoContentType() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", zone='" + getZone() + "'" +
-            ", createdat='" + getCreatedat() + "'" +
-            ", updatedat='" + getUpdatedat() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", idcategory=" + idcategory + ", iduser=" + iduser + ", name=" + name + ", photo="
+				+ Arrays.toString(photo) + ", photoContentType=" + photoContentType + ", description=" + description
+				+ ", zone=" + zone + ", createdat=" + createdat + ", price=" + price + ", updatedat=" + updatedat
+				+ ", getPrice()=" + getPrice() + ", getId()=" + getId() + ", getIdcategory()=" + getIdcategory()
+				+ ", getIduser()=" + getIduser() + ", getName()=" + getName() + ", getPhoto()="
+				+ Arrays.toString(getPhoto()) + ", getPhotoContentType()=" + getPhotoContentType()
+				+ ", getDescription()=" + getDescription() + ", getZone()=" + getZone() + ", getCreatedat()="
+				+ getCreatedat() + ", getUpdatedat()=" + getUpdatedat() + ", hashCode()=" + hashCode() + ", getClass()="
+				+ getClass() + ", toString()=" + super.toString() + "]";
+	}
+
+  
 }
