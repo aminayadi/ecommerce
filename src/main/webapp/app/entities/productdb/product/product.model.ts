@@ -9,8 +9,10 @@ export interface IProduct {
   photoContentType?: string | null;
   description?: string | null;
   zone?: string | null;
+  price?: number | null;
   createdat?: dayjs.Dayjs | null;
   updatedat?: dayjs.Dayjs | null;
+ 
 }
 
 export type NewProduct = Omit<IProduct, 'id'> & { id: null };

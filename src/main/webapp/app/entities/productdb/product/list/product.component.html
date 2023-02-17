@@ -74,6 +74,15 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+         
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          
+          
           <th scope="col" jhiSortBy="createdat">
             <div class="d-flex">
               <span>Createdat</span>
@@ -105,6 +114,7 @@
           </td>
           <td>{{ product.description }}</td>
           <td>{{ product.zone }}</td>
+          <td>{{ product.price }}</td>
           <td>{{ product.createdat | formatMediumDate }}</td>
           <td>{{ product.updatedat | formatMediumDate }}</td>
           <td class="text-end">
