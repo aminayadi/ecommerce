@@ -26,6 +26,8 @@ type ProductFormGroupContent = {
   description: FormControl<IProduct['description']>;
   zone: FormControl<IProduct['zone']>;
   price: FormControl<IProduct['price']>;
+  discount: FormControl<IProduct['discount']>;
+  afterdiscount: FormControl<IProduct['afterdiscount']>;
   createdat: FormControl<IProduct['createdat']>;
   updatedat: FormControl<IProduct['updatedat']>;
 };
@@ -55,6 +57,8 @@ export class ProductFormService {
       description: new FormControl(productRawValue.description),
       zone: new FormControl(productRawValue.zone),
       price: new FormControl(productRawValue.price),
+      discount: new FormControl(productRawValue.discount),
+      afterdiscount: new FormControl(productRawValue.afterdiscount),
       createdat: new FormControl(productRawValue.createdat),
       updatedat: new FormControl(productRawValue.updatedat),
     });

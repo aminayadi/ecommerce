@@ -10,6 +10,8 @@ export interface IProduct {
   description?: string | null;
   zone?: string | null;
   price?: number | null;
+  discount?: number | null;
+  afterdiscount?: number | null;
   createdat?: dayjs.Dayjs | null;
   updatedat?: dayjs.Dayjs | null;
  

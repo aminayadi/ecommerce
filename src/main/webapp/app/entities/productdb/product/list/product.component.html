@@ -82,6 +82,21 @@
             </div>
           </th>
           
+           <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>discount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          
+          
+           <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>afterdiscount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          
           
           <th scope="col" jhiSortBy="createdat">
             <div class="d-flex">
@@ -115,6 +130,8 @@
           <td>{{ product.description }}</td>
           <td>{{ product.zone }}</td>
           <td>{{ product.price }}</td>
+          <td>{{ product.discount }}</td>
+          <td>{{ product.afterdiscount }}</td>
           <td>{{ product.createdat | formatMediumDate }}</td>
           <td>{{ product.updatedat | formatMediumDate }}</td>
           <td class="text-end">
