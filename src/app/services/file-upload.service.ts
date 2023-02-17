@@ -13,8 +13,8 @@ export class FileUploadService {
     return this.http.get(`${this.baseUrl}/filesbyidproduct/${id}`);
   }
 
-  //private baseUrl = 'http://localhost:8091/api/fmanager';
-  private baseUrl = 'http://localhost:8080/services/photodb/api/fmanager';
+  private baseUrl = 'http://localhost:8091/api/fmanager';
+  //private baseUrl = 'http://localhost:8080/services/photodb/api/fmanager';
   constructor(private http: HttpClient) { }
 
   upload(file: File): Observable<HttpEvent<any>> {

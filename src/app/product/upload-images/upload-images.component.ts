@@ -18,6 +18,7 @@ export class UploadImagesComponent implements OnInit {
 
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  imageInfosRes?: Observable<any>;
   
 
   constructor(private uploadService: FileUploadService) {
@@ -74,10 +75,12 @@ export class UploadImagesComponent implements OnInit {
             this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
           } else if (event instanceof HttpResponse) {
             const msg = 'Uploaded the file successfully: ' + file.name;
+            console.log("Before Emit ok ......................",file.name);
             this.message.push(msg);
             this.imageInfos = this.uploadService.getFiles();
             this.imageInfos.forEach(element => console.log("element : -----------",element) );
-            this.imageInfosChanged.emit(this.imageInfos);
+
+            this.imageInfosChanged.emit({imageInfos : this.imageInfos, nb : this.selectedFiles!.length});
             console.log("Emit ok ......................",file.name);
           }
         },

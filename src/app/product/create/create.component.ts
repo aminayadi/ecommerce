@@ -156,9 +156,12 @@ export class CreateComponent implements OnInit {
   }
 
 
-  public doSomethingWithCount(imageInfos: Observable<any>):void {
+  public doSomethingWithCount(obj:any):void {
    
+    const imageInfos= obj.imageInfos ;
+    const nb=obj.nb;
    
+    console.log("nb = ***********************************", nb);
 
     this.imageInfos = imageInfos;
 
@@ -171,7 +174,7 @@ export class CreateComponent implements OnInit {
       console.log("FROM CREATE FORM : -----------",element);
 
       
-      for (let j=0; j<element.length;j++)
+      for (let j=element.length-nb; j<element.length;j++)
       {
         let p:Photo={
           path: element[j].url,
