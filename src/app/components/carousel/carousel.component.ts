@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
       this.products = data;
       this.productsDto = this.inintProductDto(this.products);
     
-      console.log(this.products);
+      console.log("products--------------",this.products);
   
     });
 
@@ -51,6 +51,7 @@ inintProductDto(products: Product[]):ProductDto[] {
    
     description:product.description,
     zone:product.zone,
+    price:product.price,
     lphotos:product.lphotos,
     pfield:product.pfields,
     

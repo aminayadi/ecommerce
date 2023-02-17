@@ -41,6 +41,7 @@ export class CreateComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       zone: ['', Validators.required],
+      price: ['', Validators.required],
       category: ['', Validators.required],
       pfields:this._formBuilder.array([]),
       lphotos:[],
@@ -156,14 +157,20 @@ export class CreateComponent implements OnInit {
 
 
   public doSomethingWithCount(imageInfos: Observable<any>):void {
-  
-    
+   
+   
+
     this.imageInfos = imageInfos;
+
+    console.log("imageInfos-----------",this.imageInfos) ;
     //. . . More logic
-    let lphotos:Photo[] = [];
+    let lphotos:Photo[]=[];
+
     this.imageInfos!.forEach((element) => 
-    {
+    {  
       console.log("FROM CREATE FORM : -----------",element);
+
+      
       for (let j=0; j<element.length;j++)
       {
         let p:Photo={
@@ -173,19 +180,22 @@ export class CreateComponent implements OnInit {
           id: null
         }
         lphotos.push(p);
+        
     }
 
     console.log("LPHOTOS :) ", lphotos);
     
     this.productForm.controls['lphotos'].setValue(lphotos);
-
+   
     console.log("doSomethingWithCount :) ", this.productForm.value);
+    console.log("LPHOTOS :) ", lphotos);
+    
   }
 
     );
 
 
-
+    
 
 }
 

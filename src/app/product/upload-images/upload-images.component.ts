@@ -25,7 +25,7 @@ export class UploadImagesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    //this.imageInfos =    this.uploadService.getFiles();
+    this.imageInfos =    this.uploadService.getFiles();
     console.log("Hiiiiiiiiiiiiiiiiiiiiiiiiiiii");
     console.log("Hiiiiiiii ---- this.index : ", this.index);
     
@@ -49,6 +49,8 @@ export class UploadImagesComponent implements OnInit {
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
+      console.log("--------------numberOfFiles",numberOfFiles);
+       
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
 

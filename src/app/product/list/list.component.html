@@ -11,13 +11,14 @@
             <tr>
               <th scope="col">Id</th>
               <th scope="col">Name</th>
+              <th scope="col">price</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let product of allproducts">
               <td scope="row">{{product.id}}</td>
               <td>{{product.name}}</td>
-
+              <td>{{product.price}}</td>
               <td>
               <a class="btn btn-primary"  [routerLink]="['/myspace/editannounce', product.id]" > Edit </a> |
               <button type="button" (click)="openDeleteModal(product.id)" class="btn btn-danger">Delete</button>

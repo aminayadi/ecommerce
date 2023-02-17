@@ -92,14 +92,14 @@
                                     <div class="label label-green"> location :{{product.zone}}</div>
                                     
 
-                                        <!--div class="product-container"  *ngFor="let prod of products" -->
+                                        <div class="product-container" >
                                             <!--div class="p" ><img src="http://192.168.1.23:8091/api/fmanager/files/1675820786408.jpg"
                                                     alt="Product"></div-->
                                                  <div class="p"  *ngFor="let lphoto of product.lphotos" ><img src="{{lphoto.name}}"
                                                     alt="Product" (click)="imageChange($event)"></div>
                                                    
                                         
-                                    <!--/div-->
+                                    </div>
                                     
                                     <div class="image">
                                         <img id="principal" src="{{product.photo}}" alt="Product">
@@ -122,7 +122,7 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <p *ngIf="i==0"><span class="money" >DT81.00</span></p>
+                                    <p *ngIf="i==0"><span class="money" >{{product.price}} DT</span></p>
                                     <p *ngIf="i==1"><span class="money" >DT500000.00</span><span class="price-old">$550000.00</span></p>
                                 </div>
                             </div>

@@ -13,6 +13,7 @@ export class Product {
 
     description!:string;
     zone!:string;
+    price!:number;
     lphotos!:Photo[];
     pfields!:Pfield[];
     
@@ -25,6 +26,7 @@ export class Product {
         this.photo= '';
         this.description= '';
         this.zone= '';
+        this.price= 0;
         this.lphotos=[];
         this.pfields=[];  
       }
@@ -45,6 +47,7 @@ export interface ProductDto {
     photo:any;
     description:string;
     zone:string;
+    price:number;
     lphotos:Photo[];
     pfield:Pfield[];
     

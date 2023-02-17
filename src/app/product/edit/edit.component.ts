@@ -36,6 +36,7 @@ export class EditComponent implements OnInit {
         iduser: ['', Validators.required],
         description: ['', Validators.required],
         zone: ['', Validators.required],
+        price: [0, Validators.required],
         lphotos:[],
         photoContentType:null,
         photo:null,

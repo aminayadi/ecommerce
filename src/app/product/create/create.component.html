@@ -32,7 +32,14 @@
                 </div>
 
 
-
+                <div>
+                  <input class="input form-control" formControlName="price" type="number" placeholder="Enter product price..."/>
+                  <div *ngIf="canShowError('price')">
+                    <div class="error" *ngIf="hasError('price', 'required')">
+                      product price is required.
+                    </div>
+                  </div>
+                </div>
 
 
                 <div>
