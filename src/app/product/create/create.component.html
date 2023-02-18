@@ -66,11 +66,51 @@
               </ng-container>
 
 
+             <!---JN Adding main image start--->
+              
+             <div class="row mb-3">
+              <label class="form-label" for="field_photo"> Main Photo</label>
+              <div>
+                <img
+                  [src]="'data:' +productForm.get('photoContentType')!.value + ';base64,' + productForm.get('photo')!.value"
+                  style="max-height: 100px"
+                  *ngIf="productForm.get('photo')!.value"
+                  alt="product image"
+                />
+                <div *ngIf="productForm.get('photo')!.value" class="form-text text-danger clearfix">
+                  <span class="pull-start">{{productForm.get('photoContentType')!.value }}, {{ byteSize(productForm.get('photo')!.value!) }}</span>
+                  <!--button
+                    type="button"
+                    (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
+                    class="btn btn-secondary btn-xs pull-end"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                  </button-->
+                </div>
+                <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', true)" accept="image/*" />
+              </div>
+              <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+              <input
+                type="hidden"
+                class="form-control"
+                name="photoContentType"
+                id="field_photoContentType"
+                formControlName="photoContentType"
+              />
+            </div>
+  
+
+
+
+            <!---JN Adding main image ends--->
+
+
+
 
 
 
                <!--JN Adding upload images-->
-
+         
                
               <app-upload-images (imageInfosChanged)="doSomethingWithCount($event)"></app-upload-images>
 

@@ -6,9 +6,13 @@ import { Fields } from 'src/app/model/fields';
 import { Pfield } from 'src/app/model/pfield';
 import { Photo } from 'src/app/model/photo';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { DataUtils, FileLoadError } from 'src/app/services/data-util.service';
+import { EventManager, EventWithContent } from 'src/app/services/event-manager.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UploadImagesComponent } from '../upload-images/upload-images.component';
+
+
 
 
 @Component({
@@ -17,10 +21,10 @@ import { UploadImagesComponent } from '../upload-images/upload-images.component'
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  imageInfos?: Observable<any>;
-
-  @ViewChild('child', {static: false})  child!: UploadImagesComponent;
   
+  imageInfos?: Observable<any>;
+  @ViewChild('child', {static: false})  child!: UploadImagesComponent;
+
   categories  :any =[];
   fields: Fields[] = [];
   productForm!: FormGroup;
@@ -32,7 +36,10 @@ export class CreateComponent implements OnInit {
   isLoggedIn = false;
   username?: string;
 
-  constructor(private categoriesService:CategoriesService,
+  constructor(
+    protected dataUtils: DataUtils,
+    protected eventManager: EventManager,
+    private categoriesService:CategoriesService,
     private _formBuilder: FormBuilder,
     private productsService: ProductsService,
     private tokenStorageService: TokenStorageService) { 
@@ -44,6 +51,8 @@ export class CreateComponent implements OnInit {
       price: ['', Validators.required],
       discount: [''],
       afterdiscount:[''],
+      photo: null,
+      photoContentType: null,
       category: ['', Validators.required],
       pfields:this._formBuilder.array([]),
       lphotos:[],
@@ -73,8 +82,6 @@ export class CreateComponent implements OnInit {
     this.pfieldForm.get("value")?.setValue("");
     this.pfields.push(this.pfieldForm);
   }
-
-
 
 
   ngOnInit(): void {
@@ -204,10 +211,7 @@ export class CreateComponent implements OnInit {
 
 }
 
-
-
-  
-  getFieldsofCategories(id: string):Fields[]{
+getFieldsofCategories(id: string):Fields[]{
     console.log("this.categories: ", this.categories,"  this.categories.length ", this.categories.length);
     for(let i=0; i< this.categories.length; i++)
      
@@ -230,4 +234,43 @@ export class CreateComponent implements OnInit {
     const control = this.productForm.get(controlName);
     return control!.invalid && (control!.dirty || control!.touched)
   }  
+
+
+//--------------JN ADD MAIN PHOTO STARTS--------//
+
+
+
+byteSize(base64String: string): string {
+  return this.dataUtils.byteSize(base64String);
 }
+
+openFile(base64String: string, contentType: string | null | undefined): void {
+  this.dataUtils.openFile(base64String, contentType);
+}
+
+setFileData(event: Event, field: string, isImage: boolean): void {
+  this.dataUtils.loadFileToForm(event, this.productForm, field, isImage).subscribe({
+    error: (err: FileLoadError) =>
+      this.eventManager.broadcast('big error'),
+  });
+}
+
+
+
+//--------------JN ADD MAIN PHOTO ENDS--------//
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
