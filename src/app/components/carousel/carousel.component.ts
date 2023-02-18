@@ -48,10 +48,11 @@ inintProductDto(products: Product[]):ProductDto[] {
     iduser:product.iduser,
     name:product.name,
     photo:this.getPhoto(product.photo),
-   
     description:product.description,
     zone:product.zone,
     price:product.price,
+    discount:product.discount,
+    afterdiscount:product.afterdiscount,
     lphotos:product.lphotos,
     pfield:product.pfields,
     

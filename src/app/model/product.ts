@@ -14,6 +14,8 @@ export class Product {
     description!:string;
     zone!:string;
     price!:number;
+    discount!:number;
+    afterdiscount!:number;
     lphotos!:Photo[];
     pfields!:Pfield[];
     
@@ -27,6 +29,8 @@ export class Product {
         this.description= '';
         this.zone= '';
         this.price= 0;
+        this.discount= 0;
+        this.afterdiscount= 0;
         this.lphotos=[];
         this.pfields=[];  
       }
@@ -48,6 +52,8 @@ export interface ProductDto {
     description:string;
     zone:string;
     price:number;
+    discount:number;
+    afterdiscount:number;
     lphotos:Photo[];
     pfield:Pfield[];
     

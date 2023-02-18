@@ -88,7 +88,9 @@
                         <div class="col-md-3"  *ngFor="let product of productsDto;let i=index">
                             <div class="card" >
                                 <div class="card-main" >
-                                    <div class="discount" *ngIf="i==1">-10%</div>
+
+                                    <div class="discountless" *ngIf="product.discount==0"></div>
+                                    <div class="discount" *ngIf="product.discount!=0">- {{product.discount}}%</div>
                                     <div class="label label-green"> location :{{product.zone}}</div>
                                     
 
@@ -122,8 +124,8 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-  
-                                    <p ><span class="money" >{{product.price}} DT</span><span class="price-old">{{product.price}} DT</span></p>
+                                    <p *ngIf="product.discount==0"><span class="money" >{{product.price}} DT</span></p>
+                                    <p *ngIf="product.discount!=0"><span class="money" >{{product.afterdiscount}} DT</span><span class="price-old">{{product.price}} DT</span></p>
                                 </div>
                             </div>
                         </div> 

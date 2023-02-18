@@ -43,6 +43,12 @@
 
 
                 <div>
+                  <input class="input form-control" formControlName="discount" type="number" placeholder="Enter product discount..."/>
+                
+                </div>
+
+
+                <div>
                   <select  formControlName="category" placeholder="select" (change)="fillFields($event)">
                     <option [ngValue]=""></option>
                     <option *ngFor="let catalog of categories" [ngValue]="catalog">{{catalog.name}}</option>

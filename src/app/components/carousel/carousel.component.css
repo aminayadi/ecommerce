@@ -95,6 +95,25 @@ left: -9px;
 top: 30px;
 }
 
+
+.discountless {
+  
+    z-index: 3;
+    position: relative;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    width: 70px;
+    height: 30px;
+    border-radius: 0 15px 15px 0;
+    line-height: 30px;
+    font-style: italic;
+    left: -9px;
+    top: 30px;
+    }
+
 .discount::after {
 border-top: 6px solid #c80;
 content: '';

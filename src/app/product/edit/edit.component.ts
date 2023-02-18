@@ -37,6 +37,8 @@ export class EditComponent implements OnInit {
         description: ['', Validators.required],
         zone: ['', Validators.required],
         price: [0, Validators.required],
+        discount: [0],
+    
         lphotos:[],
         photoContentType:null,
         photo:null,

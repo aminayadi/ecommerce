@@ -42,6 +42,8 @@ export class CreateComponent implements OnInit {
       description: ['', Validators.required],
       zone: ['', Validators.required],
       price: ['', Validators.required],
+      discount: [''],
+      afterdiscount:[''],
       category: ['', Validators.required],
       pfields:this._formBuilder.array([]),
       lphotos:[],
